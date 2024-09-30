@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,12 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->enum('role', ['bot', 'user'])->default('user');
+            $table->text('content');
+            $table->boolean('has_file')->default(false);
+            $table->boolean('has_voice')->default(false);
+            $table->foreignId('chat_id')->constrained('chats')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messsages');
+        Schema::dropIfExists('messages');
     }
 };
