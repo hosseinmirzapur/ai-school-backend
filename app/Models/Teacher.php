@@ -57,18 +57,10 @@ class Teacher extends Model
     }
 
     /**
-     * @return BelongsToMany
+     * @return BelongsTo
      */
-    public function classrooms(): BelongsToMany
+    public function subject(): BelongsTo
     {
-        return $this->belongsToMany(Classroom::class);
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function subjects(): BelongsToMany
-    {
-        return $this->belongsToMany(Subject::class);
+        return $this->belongsTo(Subject::class);
     }
 }

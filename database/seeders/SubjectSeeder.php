@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Subject;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class SubjectSeeder extends Seeder
 {
@@ -12,6 +13,33 @@ class SubjectSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $subjects = [
+            [
+                'name' => 'ریاضی',
+                'slug' => Str::slug('math'),
+            ],
+            [
+                'name' => 'علوم تجربی',
+                'slug' => Str::slug('science'),
+            ],
+            [
+                'name' => 'ادبیات فارسی',
+                'slug' => Str::slug('literature'),
+            ],
+            [
+                'name' => 'مطالعات اجتماعی',
+                'slug' => Str::slug('social'),
+            ],
+            [
+                'name' => 'زبان انگلیسی',
+                'slug' => Str::slug('english'),
+            ]
+        ];
+
+        foreach ($subjects as $subject) {
+            Subject::firstOrCreate($subject);
+        }
+
+        $this->command->getOutput()->success("Done creating subjects!");
     }
 }

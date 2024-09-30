@@ -20,6 +20,6 @@ class SchoolSeeder extends Seeder
             'slug' => Str::slug($name)
         ]);
 
-        $this->command->getOutput()->success("School name: {$school->name} created|existed!");
+        $this->command->getOutput()->success("School name: {$school->name} created!");
     }
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('mobile')->unique();
             $table->string('password');
             $table->foreignId('school_id')->constrained('schools')->cascadeOnDelete();
+            $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete();
             $table->timestamps();
         });
     }
