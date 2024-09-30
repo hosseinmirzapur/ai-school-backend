@@ -20,15 +20,15 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             ClassroomSeeder::class,
             SubjectSeeder::class,
-            LessonSeeder::class,
-            VideoSeeder::class,
-            FlashcardSeeder::class,
+            LessonSeeder::class, // todo
+            VideoSeeder::class, // todo
+            FlashcardSeeder::class, // todo
             TeacherSeeder::class,
             DailyScheduleSeeder::class,
-            StudentSeeder::class,
-            ChatSeeder::class,
-            MessageSeeder::class,
-            NotificationSeeder::class,
+            StudentSeeder::class, // todo
+            ChatSeeder::class, // todo
+            MessageSeeder::class, // todo
+            NotificationSeeder::class, // todo
         ]);
     }
 }
