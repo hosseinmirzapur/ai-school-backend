@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\School;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class SchoolSeeder extends Seeder
 {
@@ -13,6 +14,12 @@ class SchoolSeeder extends Seeder
      */
     public function run(): void
     {
-//        $school = School::create();
+        $name = 'Test School';
+        $school = School::firstOrCreate([
+            'name' => $name,
+            'slug' => Str::slug($name)
+        ]);
+
+        $this->command->getOutput()->success("School name: {$school->name} | School slug: {$school->slug}");
     }
 }
