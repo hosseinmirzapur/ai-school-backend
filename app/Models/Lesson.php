@@ -2,11 +2,40 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
+/**
+ *
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property int $subject_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection<int, Flashcard> $flashcards
+ * @property-read int|null $flashcards_count
+ * @property-read Subject $subject
+ * @property-read Collection<int, Video> $videos
+ * @property-read int|null $videos_count
+ * @method static Builder|Lesson newModelQuery()
+ * @method static Builder|Lesson newQuery()
+ * @method static Builder|Lesson query()
+ * @method static Builder|Lesson whereCreatedAt($value)
+ * @method static Builder|Lesson whereId($value)
+ * @method static Builder|Lesson whereName($value)
+ * @method static Builder|Lesson whereSlug($value)
+ * @method static Builder|Lesson whereSubjectId($value)
+ * @method static Builder|Lesson whereUpdatedAt($value)
+ * @mixin Eloquent
+ */
 class Lesson extends Model
 {
     use HasFactory;
