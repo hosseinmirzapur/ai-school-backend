@@ -28,5 +28,9 @@ use Illuminate\Support\Carbon;
  */
 class Role extends Model
 {
+    protected $casts = [
+        'permissions' => 'array',
+    ];
+
     use HasFactory;
 }
