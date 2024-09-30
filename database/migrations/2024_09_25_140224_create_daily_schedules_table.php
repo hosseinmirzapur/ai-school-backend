@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('daily_schedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('classroom_id')->constrained('classrooms')->cascadeOnDelete();
+            $table->enum('dow', ['sat', 'sun', 'mon', 'tue', 'wed', 'thu']);
             $table->time('start_time');
             $table->time('end_time');
+            $table->foreignId('classroom_id')->constrained('classrooms')->cascadeOnDelete();
+            $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete();
+            $table->foreignId('teacher_id')->constrained('teachers')->cascadeOnDelete();
             $table->timestamps();
         });
     }

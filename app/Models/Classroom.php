@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -42,11 +43,11 @@ class Classroom extends Model
     use HasFactory;
 
     /**
-     * @return BelongsToMany
+     * @return BelongsTo
      */
-    public function teachers(): BelongsToMany
+    public function school(): BelongsTo
     {
-        return $this->belongsToMany(Teacher::class);
+        return $this->belongsTo(School::class);
     }
 
     /**
@@ -58,10 +59,10 @@ class Classroom extends Model
     }
 
     /**
-     * @return HasOne
+     * @return HasMany
      */
-    public function dailySchedule(): HasOne
+    public function dailySchedules(): HasMany
     {
-        return $this->hasOne(DailySchedule::class);
+        return $this->hasMany(DailySchedule::class);
     }
 }

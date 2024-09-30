@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -36,18 +35,18 @@ class Subject extends Model
     use HasFactory;
 
     /**
-     * @return BelongsToMany
+     * @return HasMany
      */
-    public function dailySchedules(): BelongsToMany
+    public function dailySchedules(): HasMany
     {
-        return $this->belongsToMany(DailySchedule::class);
+        return $this->hasMany(DailySchedule::class);
     }
 
     /**
-     * @return BelongsToMany
+     * @return HasMany
      */
-    public function teachers(): BelongsToMany
+    public function teachers(): HasMany
     {
-        return $this->belongsToMany(Teacher::class);
+        return $this->hasMany(Teacher::class);
     }
 }

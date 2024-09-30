@@ -21,6 +21,6 @@ class ClassroomSeeder extends Seeder
             'school_id' => School::firstOrFail()->id
         ]);
 
-        $this->command->getOutput()->success("Classroom {$classroom->name} created|existed!}");
+        $this->command->getOutput()->success("Classroom {$classroom->name} created!");
     }
 }

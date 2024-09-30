@@ -24,6 +24,6 @@ class AdminSeeder extends Seeder
             'role_id' => Role::firstOrFail()->id
         ]);
 
-        $this->command->getOutput()->success("Admin {$admin->name} created|existed!");
+        $this->command->getOutput()->success("Admin {$admin->name} created!");
     }
 }
