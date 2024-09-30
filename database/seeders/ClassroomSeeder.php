@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Classroom;
+use App\Models\School;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ClassroomSeeder extends Seeder
 {
@@ -12,6 +14,13 @@ class ClassroomSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $name = 'Math 101';
+        $classroom = Classroom::firstOrCreate([
+            'name' => $name,
+            'slug' => Str::slug($name),
+            'school_id' => School::firstOrFail()->id
+        ]);
+
+        $this->command->getOutput()->success("Classroom {$classroom->name} created|existed!}");
     }
 }
