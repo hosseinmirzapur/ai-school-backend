@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 
@@ -26,5 +27,8 @@ class AppServiceProvider extends ServiceProvider
 
         // passport tokens expire in 15 days
         Passport::tokensExpireIn(now()->addDays(15));
+
+        // Globally set $guarded variable false
+        Model::isUnguarded();
     }
 }
