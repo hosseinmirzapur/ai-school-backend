@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -12,6 +12,11 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $role = Role::firstOrCreate([
+            'name' => 'superadmin',
+            'permissions' => ['*']
+        ]);
+
+        $this->command->getOutput()->success("Role {$role->name} created|exists.");
     }
 }
