@@ -8,4 +8,7 @@ sync:
 analyse:
 	@./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1G
 
-.PHONY: sync analyse
+seed:
+	php artisan migrate:fresh --seed
+
+.PHONY: sync analyse seed
