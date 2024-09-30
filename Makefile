@@ -5,4 +5,7 @@ sync:
 	@echo "Latest logs:"
 	@git log -1
 
-.PHONY: sync
+analyse:
+	@./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1G
+
+.PHONY: sync analyse
