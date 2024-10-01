@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ClassroomSeeder::class,
             SubjectSeeder::class,
             LessonSeeder::class,
+            SliderSeeder::class, // todo
             VideoSeeder::class, // todo
             FlashcardSeeder::class, // todo
             TeacherSeeder::class,
