@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             DailyScheduleSeeder::class,
             StudentSeeder::class,
             ChatSeeder::class,
-            MessageSeeder::class, // todo
+            MessageSeeder::class,
             NotificationSeeder::class, // todo
         ]);
     }
