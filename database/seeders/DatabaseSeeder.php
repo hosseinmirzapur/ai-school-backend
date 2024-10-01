@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             FlashcardSeeder::class,
             TeacherSeeder::class,
             DailyScheduleSeeder::class,
-            StudentSeeder::class, // todo
+            StudentSeeder::class,
             ChatSeeder::class, // todo
             MessageSeeder::class, // todo
             NotificationSeeder::class, // todo
