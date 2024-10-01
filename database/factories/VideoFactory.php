@@ -21,7 +21,7 @@ class VideoFactory extends Factory
         return [
             'title' => $this->faker->title(),
             'description' => $this->faker->text(),
-            'thumbnail' => $this->faker->imageUrl(),
+            'thumbnail' => $this->faker->imageUrl(width: 400, height: 300),
             'file' => 'https://videos.pexels.com/video-files/6521834/6521834-uhd_3840_2160_30fps.mp4',
             'lesson_id' => Lesson::all()->random()->id,
         ];
