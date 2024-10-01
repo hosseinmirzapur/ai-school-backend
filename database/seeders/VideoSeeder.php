@@ -12,6 +12,14 @@ class VideoSeeder extends Seeder
      */
     public function run(): void
     {
-        Video::factory(20)->create();
+        $bar = $this->command->getOutput()->createProgressBar(20);
+
+        for ($i = 0; $i < 20; $i++) {
+            Video::factory()->create();
+            $bar->advance();
+        }
+        $bar->finish();
+
+        $this->command->getOutput()->success('Videos created successfully!');
     }
 }
