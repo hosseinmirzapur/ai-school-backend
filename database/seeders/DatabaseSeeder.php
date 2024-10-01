@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             ChatSeeder::class,
             MessageSeeder::class,
-            NotificationSeeder::class, // todo
         ]);
     }
 }

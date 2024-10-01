@@ -12,6 +12,13 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        Student::factory(40)->create();
+        $bar = $this->command->getOutput()->createProgressBar(40);
+        for ($i = 0; $i < 40; $i++) {
+            Student::factory()->create();
+            $bar->advance();
+        }
+        $bar->finish();
+
+        $this->command->getOutput()->success('Students created successfully!');
     }
 }

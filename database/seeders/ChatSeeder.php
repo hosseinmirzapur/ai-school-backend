@@ -12,6 +12,15 @@ class ChatSeeder extends Seeder
      */
     public function run(): void
     {
-        Chat::factory(30)->create();
+        $bar = $this->command->getOutput()->createProgressBar(30);
+
+        for ($i = 0; $i < 30; $i++) {
+            Chat::factory()->create();
+            $bar->advance();
+        }
+        $bar->finish();
+
+        $this->command->getOutput()->success('Chats created successfully!');
+
     }
 }
