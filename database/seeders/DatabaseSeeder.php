@@ -23,12 +23,12 @@ class DatabaseSeeder extends Seeder
             LessonSeeder::class,
             SliderSeeder::class,
             VideoSeeder::class,
-            FlashcardSeeder::class, // todo
+            FlashcardSeeder::class,
             TeacherSeeder::class,
             DailyScheduleSeeder::class,
-            StudentSeeder::class, // todo
-            ChatSeeder::class, // todo
-            MessageSeeder::class, // todo
+            StudentSeeder::class,
+            ChatSeeder::class,
+            MessageSeeder::class,
             NotificationSeeder::class, // todo
         ]);
     }
