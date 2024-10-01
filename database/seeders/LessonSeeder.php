@@ -36,6 +36,10 @@ class LessonSeeder extends Seeder
                 'name' => 'درس ۵',
                 'slug' => Str::slug('unit 5')
             ],
+            [
+                'name' => 'درس ۶',
+                'slug' => Str::slug('unit 6')
+            ]
 
         ];
         foreach ($subjects as $subject) {
