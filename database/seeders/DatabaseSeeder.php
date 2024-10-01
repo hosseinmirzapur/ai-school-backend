@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             ClassroomSeeder::class,
             SubjectSeeder::class,
-            LessonSeeder::class, // todo
+            LessonSeeder::class,
             VideoSeeder::class, // todo
             FlashcardSeeder::class, // todo
             TeacherSeeder::class,
