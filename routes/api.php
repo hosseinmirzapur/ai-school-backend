@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+// Pages (auth needed)
+Route::middleware('auth:api')->prefix('/pages')->group(function () {
+    Route::get('/home', [PageController::class, 'home']);
+    Route::get('/sources', [PageController::class, 'sources']);
+    Route::get('/weekly-schedule', [PageController::class, 'weeklySchedule']);
+    Route::get('/notifications', [PageController::class, 'notifications']);
+    Route::get('/settings', [PageController::class, 'settings']);
+});
