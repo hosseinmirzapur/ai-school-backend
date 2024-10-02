@@ -65,4 +65,27 @@ class PageController extends Controller
          */
         return response()->json();
     }
+
+    /**
+     * @return JsonResponse
+     */
+    public function aboutUs(): JsonResponse
+    {
+        /* Data needed
+         * markdown content for about us
+         */
+        return response()->json();
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function contactUs(): JsonResponse
+    {
+        /* Data needed
+         * contact-us data like email, phone number or address
+         * a markdown for contact us page if needed
+         */
+        return response()->json();
+    }
 }
