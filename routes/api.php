@@ -11,3 +11,9 @@ Route::middleware('auth:api')->prefix('/pages')->group(function () {
     Route::get('/notifications', [PageController::class, 'notifications']);
     Route::get('/settings', [PageController::class, 'settings']);
 });
+
+// Pages (no auth needed)
+Route::prefix('/pages')->group(function () {
+    Route::get('/about-us', [PageController::class, 'aboutUs']);
+    Route::get('/contact-us', [PageController::class, 'contactUs']);
+});
