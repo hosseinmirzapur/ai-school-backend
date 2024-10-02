@@ -81,7 +81,7 @@ class Classroom extends Model
                 'AVG(scores) as avg_mark',
                 'COUNT(*) as total_chats',
             ])
-            ->whereYear('created_at', '<>', $years)
+            ->whereBetween('created_at', $years)
             ->groupBy('student_id', 'month')
             ->orderBy('student_id')
             ->orderBy('month')
