@@ -13,7 +13,9 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Laravel\Passport\Client;
 use Laravel\Passport\HasApiTokens;
+use Laravel\Passport\Token;
 
 /**
  *
@@ -23,15 +25,17 @@ use Laravel\Passport\HasApiTokens;
  * @property string $mobile
  * @property string $password
  * @property int $school_id
+ * @property int $subject_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Collection<int, Classroom> $classrooms
- * @property-read int|null $classrooms_count
+ * @property-read Collection<int, Client> $clients
+ * @property-read int|null $clients_count
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read School $school
- * @property-read Collection<int, Subject> $subjects
- * @property-read int|null $subjects_count
+ * @property-read Subject $subject
+ * @property-read Collection<int, Token> $tokens
+ * @property-read int|null $tokens_count
  * @method static Builder|Teacher newModelQuery()
  * @method static Builder|Teacher newQuery()
  * @method static Builder|Teacher query()
@@ -41,6 +45,7 @@ use Laravel\Passport\HasApiTokens;
  * @method static Builder|Teacher whereName($value)
  * @method static Builder|Teacher wherePassword($value)
  * @method static Builder|Teacher whereSchoolId($value)
+ * @method static Builder|Teacher whereSubjectId($value)
  * @method static Builder|Teacher whereUpdatedAt($value)
  * @mixin Eloquent
  */

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PageService;
 use Illuminate\Http\JsonResponse;
 
 class PageController extends Controller
 {
+    public function __construct(private readonly PageService $service) {}
+
     /**
      * @return JsonResponse
      */
@@ -17,7 +20,8 @@ class PageController extends Controller
          * monthly marks chart data: student + school
          * marks per subjects chart data
          */
-        return response()->json();
+        $data = $this->service->home();
+        return response()->json($data);
     }
 
     /**
@@ -28,7 +32,8 @@ class PageController extends Controller
         /* Data needed:
          * subjects
          */
-        return response()->json();
+        $data = $this->service->sources();
+        return response()->json($data);
     }
 
     /**
@@ -41,7 +46,8 @@ class PageController extends Controller
          * - day
          * - subjects: title, duration
          */
-        return response()->json();
+        $data = $this->service->weeklySchedule();
+        return response()->json($data);
     }
 
     /**
@@ -52,7 +58,8 @@ class PageController extends Controller
         /*
          * Coming soon (send only status code 200)
          */
-        return response()->json();
+        $data = $this->service->notifications();
+        return response()->json($data);
     }
 
     /**
@@ -63,7 +70,20 @@ class PageController extends Controller
         /*
          * Coming soon (send only status code 200)
          */
-        return response()->json();
+        $data = $this->service->settings();
+        return response()->json($data);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function chat(): JsonResponse
+    {
+        /* Data needed:
+         * daily chat history
+         */
+        $data = $this->service->chat();
+        return response()->json($data);
     }
 
     /**
@@ -74,7 +94,8 @@ class PageController extends Controller
         /* Data needed
          * markdown content for about us
          */
-        return response()->json();
+        $data = $this->service->aboutUs();
+        return response()->json($data);
     }
 
     /**
@@ -86,6 +107,7 @@ class PageController extends Controller
          * contact-us data like email, phone number or address
          * a markdown for contact us page if needed
          */
-        return response()->json();
+        $data = $this->service->contactUs();
+        return response()->json($data);
     }
 }

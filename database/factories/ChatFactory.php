@@ -21,6 +21,9 @@ class ChatFactory extends Factory
         return [
             'identifier' => $this->faker->uuid(),
             'title' => $this->faker->sentence(),
+            'type' => $this->faker->randomElement(['casual', 'quiz']),
+            'score' => $this->faker->numberBetween(0, 20),
+            'active' => $this->faker->boolean(),
             'student_id' => Student::all()->random()->id,
         ];
     }

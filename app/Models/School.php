@@ -16,6 +16,7 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property string $name
  * @property string $slug
+ * @property int $active
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Collection<int, Admin> $admins
@@ -29,6 +30,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|School newModelQuery()
  * @method static Builder|School newQuery()
  * @method static Builder|School query()
+ * @method static Builder|School whereActive($value)
  * @method static Builder|School whereCreatedAt($value)
  * @method static Builder|School whereId($value)
  * @method static Builder|School whereName($value)

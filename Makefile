@@ -16,4 +16,7 @@ todo:
 	@grep -rni --exclude-dir=vendor --exclude-dir=node_modules --exclude-dir=storage --exclude=Makefile "// todo" ./
 	@echo "Search Completed!"
 
+ide-model:
+	@php artisan ide-helper:model --write
+
 .PHONY: sync analyse seed todo
