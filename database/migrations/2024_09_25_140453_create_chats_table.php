@@ -15,6 +15,13 @@ return new class extends Migration
             $table->id();
             $table->uuid('identifier');
             $table->string('title')->nullable();
+            $table->enum('type', ['casual', 'quiz']);
+            $table->integer('score')->default(0);
+            $table->boolean('active')->default(true);
+            $table->foreignId('subject_id')
+                ->nullable()
+                ->constrained('subjects')
+                ->cascadeOnDelete();
             $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
             $table->timestamps();
         });

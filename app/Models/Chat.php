@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ChatFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+
 
 /**
  *
@@ -23,6 +25,8 @@ use Illuminate\Support\Carbon;
  * @property-read Collection<int, Message> $messages
  * @property-read int|null $messages_count
  * @property-read Student $student
+ * @property-read Subject|null $subject
+ * @method static ChatFactory factory($count = null, $state = [])
  * @method static Builder|Chat newModelQuery()
  * @method static Builder|Chat newQuery()
  * @method static Builder|Chat query()
@@ -52,5 +56,13 @@ class Chat extends Model
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function subject(): BelongsTo
+    {
+        return $this->belongsTo(Subject::class);
     }
 }

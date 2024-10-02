@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Classroom;
-use App\Models\School;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class ClassroomSeeder extends Seeder
 {
@@ -14,13 +12,14 @@ class ClassroomSeeder extends Seeder
      */
     public function run(): void
     {
-        $name = 'Math 101';
-        $classroom = Classroom::firstOrCreate([
-            'name' => $name,
-            'slug' => Str::slug($name),
-            'school_id' => School::firstOrFail()->id
-        ]);
+        $bar = $this->command->getOutput()->createProgressBar(6);
 
-        $this->command->getOutput()->success("Classroom {$classroom->name} created!");
+        for ($i = 1; $i <= 10; $i++) {
+            Classroom::factory()->create();
+            $bar->advance();
+        }
+        $bar->finish();
+
+        $this->command->getOutput()->success("Classrooms created!");
     }
 }

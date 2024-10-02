@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Admin;
+use App\Models\Student;
+use App\Models\Teacher;
+
 return [
 
     /*
@@ -40,9 +44,17 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'api' => [
+        'api-teacher' => [
             'driver' => 'passport',
-            'provider' => 'users',
+            'provider' => 'teachers',
+        ],
+        'api-student' => [
+            'driver' => 'passport',
+            'provider' => 'students',
+        ],
+        'api-admin' => [
+            'driver' => 'passport',
+            'provider' => 'admins',
         ],
     ],
 
@@ -64,10 +76,18 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'teachers' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => Teacher::class,
         ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => Student::class
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => Admin::class
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

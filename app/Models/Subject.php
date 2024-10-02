@@ -15,6 +15,8 @@ use Illuminate\Support\Carbon;
  *
  * @property int $id
  * @property string $name
+ * @property string $slug
+ * @property string|null $image
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Collection<int, DailySchedule> $dailySchedules
@@ -26,7 +28,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Subject query()
  * @method static Builder|Subject whereCreatedAt($value)
  * @method static Builder|Subject whereId($value)
+ * @method static Builder|Subject whereImage($value)
  * @method static Builder|Subject whereName($value)
+ * @method static Builder|Subject whereSlug($value)
  * @method static Builder|Subject whereUpdatedAt($value)
  * @mixin Eloquent
  */

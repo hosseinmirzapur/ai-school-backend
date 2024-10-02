@@ -23,6 +23,7 @@ class StudentFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'mobile' => $this->faker->phoneNumber(),
+            'email' => $this->faker->unique()->safeEmail(),
             'password' => Hash::make('password'),
             'gender' => $this->faker->randomElement(['male', 'female']),
             'dob' => $this->faker->date(),

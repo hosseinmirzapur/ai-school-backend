@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $name
- * @property string|null $permissions
+ * @property array|null $permissions
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @method static Builder|Role newModelQuery()

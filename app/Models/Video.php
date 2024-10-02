@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\VideoFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +22,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Lesson $lesson
+ * @method static VideoFactory factory($count = null, $state = [])
  * @method static Builder|Video newModelQuery()
  * @method static Builder|Video newQuery()
  * @method static Builder|Video query()

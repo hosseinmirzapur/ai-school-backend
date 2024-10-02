@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\MessageFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +23,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read Chat $chat
  * @property-read Student|null $student
+ * @method static MessageFactory factory($count = null, $state = [])
  * @method static Builder|Message newModelQuery()
  * @method static Builder|Message newQuery()
  * @method static Builder|Message query()
