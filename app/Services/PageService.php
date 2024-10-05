@@ -53,7 +53,7 @@ class PageService
      */
     public function sources(): array
     {
-        $subjects = Subject::all()->only(['name', 'slug', 'image']);
+        $subjects = Subject::select(['name', 'slug', 'image'])->get();
 
         return [
             'sources' => $subjects
@@ -83,8 +83,8 @@ class PageService
          *
          * @var Collection<DailySchedule> $schedules
          */
-        foreach ($weeklySchedule as $day => $schedules) {
-            $day['fullDuration'] = $schedules->sum('duration');
+        foreach ($weeklySchedule as $schedules) {
+            $schedules['fullDuration'] = $schedules->sum('duration');
         }
 
         return [
