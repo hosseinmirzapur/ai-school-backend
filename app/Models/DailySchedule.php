@@ -42,6 +42,8 @@ class DailySchedule extends Model
 {
     use HasFactory;
 
+    public $appends = ['duration'];
+
     /**
      * @return BelongsTo
      */
@@ -64,6 +66,15 @@ class DailySchedule extends Model
     public function teacher(): BelongsTo
     {
         return $this->belongsTo(Teacher::class);
+    }
+
+    public function getDurationAttribute(): int
+    {
+        $startTime = Carbon::parse($this->start_time);
+        $endTime = Carbon::parse($this->end_time);
+        $durationInMinutes = $endTime->diffInMinutes($startTime);
+
+        return (int)$durationInMinutes;
     }
 
 }

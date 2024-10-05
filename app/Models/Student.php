@@ -37,8 +37,6 @@ use Laravel\Passport\Token;
  * @property-read Classroom $classroom
  * @property-read Collection<int, Client> $clients
  * @property-read int|null $clients_count
- * @property-read Collection<int, DailySchedule> $dailySchedules
- * @property-read int|null $daily_schedules_count
  * @property-read Collection<int, Message> $messages
  * @property-read int|null $messages_count
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
@@ -97,14 +95,6 @@ class Student extends Model
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function dailySchedules(): HasMany
-    {
-        return $this->hasMany(DailySchedule::class);
     }
 
     /**
