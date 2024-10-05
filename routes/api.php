@@ -36,5 +36,5 @@ Route::prefix('/pages')->group(function () {
 // Student Auth
 Route::prefix('/auth')->group(function () {
     Route::post('/login', [StudentController::class, 'login']);
-    Route::post('/logout', [StudentController::class, 'logout']);
+    Route::post('/logout', [StudentController::class, 'logout'])->middleware('auth:api-student');
 });
