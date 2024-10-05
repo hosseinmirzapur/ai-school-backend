@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lesson;
+use App\Models\Subject;
 use App\Services\PageService;
 use Illuminate\Http\JsonResponse;
 
 class PageController extends Controller
 {
-    public function __construct(private readonly PageService $service) {}
+    public function __construct(private readonly PageService $service)
+    {
+    }
 
     /**
      * @return JsonResponse
@@ -108,6 +112,53 @@ class PageController extends Controller
          * a markdown for contact us page if needed
          */
         $data = $this->service->contactUs();
+        return response()->json($data);
+    }
+
+    /**
+     * @param Subject $subject
+     * @return JsonResponse
+     */
+    public function lessons(Subject $subject): JsonResponse
+    {
+        /* Data needed
+         * lessons assigned to the subject
+         */
+
+        $data = $this->service->lessons($subject);
+        return response()->json($data);
+    }
+
+    /**
+     * @param Lesson $lesson
+     * @return JsonResponse
+     */
+    public function sliders(Lesson $lesson): JsonResponse
+    {
+        /* Data needed
+         * all the sliders for the lesson
+         */
+        $data = $this->service->sliders($lesson);
+        return response()->json($data);
+    }
+
+    /**
+     * @param Lesson $lesson
+     * @return JsonResponse
+     */
+    public function videos(Lesson $lesson): JsonResponse
+    {
+        $data = $this->service->videos($lesson);
+        return response()->json($data);
+    }
+
+    /**
+     * @param Lesson $lesson
+     * @return JsonResponse
+     */
+    public function flashcards(Lesson $lesson): JsonResponse
+    {
+        $data = $this->service->flashcards($lesson);
         return response()->json($data);
     }
 }
