@@ -36,6 +36,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|DailySchedule whereSubjectId($value)
  * @method static Builder|DailySchedule whereTeacherId($value)
  * @method static Builder|DailySchedule whereUpdatedAt($value)
+ * @property-read int $duration
  * @mixin Eloquent
  */
 class DailySchedule extends Model

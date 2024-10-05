@@ -36,6 +36,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Classroom whereSchoolId($value)
  * @method static Builder|Classroom whereSlug($value)
  * @method static Builder|Classroom whereUpdatedAt($value)
+ * @property int $grade
+ * @method static Builder|Classroom whereGrade($value)
  * @mixin Eloquent
  */
 class Classroom extends Model
