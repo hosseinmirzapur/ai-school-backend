@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 // Pages (auth needed)
@@ -30,4 +31,10 @@ Route::middleware('auth:api-student')->prefix('/pages')->group(function () {
 Route::prefix('/pages')->group(function () {
     Route::get('/about-us', [PageController::class, 'aboutUs']);
     Route::get('/contact-us', [PageController::class, 'contactUs']);
+});
+
+// Student Auth
+Route::prefix('/auth')->group(function () {
+    Route::post('/login', [StudentController::class, 'login']);
+    Route::post('/logout', [StudentController::class, 'logout']);
 });
