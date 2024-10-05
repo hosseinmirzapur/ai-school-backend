@@ -25,6 +25,7 @@ use Laravel\Passport\Token;
  * @property string|null $name
  * @property string $mobile
  * @property string $email
+ * @property string $username
  * @property string $password
  * @property string|null $gender
  * @property string|null $dob
