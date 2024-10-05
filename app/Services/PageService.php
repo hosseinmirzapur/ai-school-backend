@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Chat;
 use App\Models\DailySchedule;
+use App\Models\SiteSettings;
 use App\Models\Student;
 use App\Models\Subject;
 use DB;
@@ -109,7 +111,9 @@ class PageService
      */
     public function settings(): array
     {
-        return [];
+        return [
+            'settings' => []
+        ];
     }
 
     /**
@@ -117,7 +121,24 @@ class PageService
      */
     public function chat(): array
     {
-        return [];
+        /** @var Student $student */
+        $student = auth()->user();
+
+        // fetching only the last 24 hours student chats
+        $chats = $student
+            ->chats()
+            ->where('active', true)
+            ->where('type', 'casual')
+            ->whereDate(
+                'created_at',
+                '>=',
+                now()->subDay()
+            )
+            ->get();
+
+        return [
+            'chats' => $chats
+        ];
     }
 
     /**
@@ -125,7 +146,9 @@ class PageService
      */
     public function aboutUs(): array
     {
-        return [];
+        return [
+            'aboutUs' => SiteSettings::aboutUs()
+        ];
     }
 
     /**
@@ -133,6 +156,8 @@ class PageService
      */
     public function contactUs(): array
     {
-        return [];
+        return [
+            'contactUs' => SiteSettings::contactUs()
+        ];
     }
 }

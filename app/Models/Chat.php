@@ -36,6 +36,14 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Chat whereStudentId($value)
  * @method static Builder|Chat whereTitle($value)
  * @method static Builder|Chat whereUpdatedAt($value)
+ * @property string $type
+ * @property int $score
+ * @property int $active
+ * @property int|null $subject_id
+ * @method static Builder|Chat whereActive($value)
+ * @method static Builder|Chat whereScore($value)
+ * @method static Builder|Chat whereSubjectId($value)
+ * @method static Builder|Chat whereType($value)
  * @mixin Eloquent
  */
 class Chat extends Model
