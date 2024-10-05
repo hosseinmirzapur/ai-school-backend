@@ -2,7 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\DailySchedule;
 use App\Models\Student;
+use App\Models\Subject;
+use DB;
+use Illuminate\Support\Collection;
 
 class PageService
 {
@@ -49,7 +53,11 @@ class PageService
      */
     public function sources(): array
     {
-        return [];
+        $subjects = Subject::all()->only(['name', 'slug', 'image']);
+
+        return [
+            'sources' => $subjects
+        ];
     }
 
     /**
@@ -57,7 +65,31 @@ class PageService
      */
     public function weeklySchedule(): array
     {
-        return [];
+        /** @var Student $student */
+        $student = auth()->user();
+
+        $weeklySchedule = $student
+            ->classroom
+            ->dailySchedules()
+            ->with('subject')
+            ->orderByRaw("FIELD(dow, 'sat', 'sun', 'mon', 'tue', 'wed', 'thu')")
+            ->orderBy('start_time')
+            ->get()
+            ->groupBy('dow');
+
+        /**
+         * Add `fullDuration` attribute to each day
+         * e.g: `sat['fullDuration'] = 155` in minutes
+         *
+         * @var Collection<DailySchedule> $schedules
+         */
+        foreach ($weeklySchedule as $day => $schedules) {
+            $day['fullDuration'] = $schedules->sum('duration');
+        }
+
+        return [
+            'schedule' => $weeklySchedule,
+        ];
     }
 
     /**
@@ -65,7 +97,11 @@ class PageService
      */
     public function notifications(): array
     {
-        return [];
+        $notifications = []; // empty for now
+
+        return [
+            'notifications' => $notifications
+        ];
     }
 
     /**
