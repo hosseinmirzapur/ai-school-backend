@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Chat;
 use App\Models\DailySchedule;
 use App\Models\Lesson;
 use App\Models\SiteSettings;
@@ -195,6 +196,15 @@ class PageService
     {
         return [
             'flashcards' => $lesson->flashcards
+        ];
+    }
+
+    public function messages(Chat $chat): array
+    {
+        $messages = $chat->messages;
+
+        return [
+            'messages' => $messages
         ];
     }
 }

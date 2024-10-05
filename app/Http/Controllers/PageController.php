@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\Lesson;
 use App\Models\Subject;
 use App\Services\PageService;
@@ -159,6 +160,12 @@ class PageController extends Controller
     public function flashcards(Lesson $lesson): JsonResponse
     {
         $data = $this->service->flashcards($lesson);
+        return response()->json($data);
+    }
+
+    public function messages(Chat $chat): JsonResponse
+    {
+        $data = $this->service->messages($chat);
         return response()->json($data);
     }
 }

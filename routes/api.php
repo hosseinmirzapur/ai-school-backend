@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api-student')->prefix('/pages')->group(function () {
     Route::get('/home', [PageController::class, 'home']);
 
-    // `sources` related routes
+    // `/pages/sources` related routes
     Route::prefix('/sources')->group(function () {
         Route::get('/', [PageController::class, 'sources']);
         Route::get('/{slug}', [PageController::class, 'lessons']);
@@ -18,7 +18,12 @@ Route::middleware('auth:api-student')->prefix('/pages')->group(function () {
     Route::get('/weekly-schedule', [PageController::class, 'weeklySchedule']);
     Route::get('/notifications', [PageController::class, 'notifications']);
     Route::get('/settings', [PageController::class, 'settings']);
-    Route::get('/chat', [PageController::class, 'chat']);
+
+    // `/pages/chat` related routes
+    Route::prefix('/chat')->group(function () {
+        Route::get('/', [PageController::class, 'chat']);
+        Route::get('/{identifier}', [PageController::class, 'messages']);
+    });
 });
 
 // Pages (no auth needed)
