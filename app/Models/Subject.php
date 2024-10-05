@@ -23,6 +23,8 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $daily_schedules_count
  * @property-read Collection<int, Teacher> $teachers
  * @property-read int|null $teachers_count
+ * @property-read Collection<int, Lesson> $lessons
+ * @property-read int|null $lessons_count
  * @method static Builder|Subject newModelQuery()
  * @method static Builder|Subject newQuery()
  * @method static Builder|Subject query()
@@ -52,5 +54,13 @@ class Subject extends Model
     public function teachers(): HasMany
     {
         return $this->hasMany(Teacher::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function lessons(): HasMany
+    {
+        return $this->hasMany(Lesson::class);
     }
 }

@@ -2,12 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\Chat;
 use App\Models\DailySchedule;
+use App\Models\Lesson;
 use App\Models\SiteSettings;
 use App\Models\Student;
 use App\Models\Subject;
-use DB;
 use Illuminate\Support\Collection;
 
 class PageService
@@ -158,6 +157,44 @@ class PageService
     {
         return [
             'contactUs' => SiteSettings::contactUs()
+        ];
+    }
+
+    public function lessons(Subject $subject): array
+    {
+        $lessons = $subject->lessons;
+
+        return [
+            'lessons' => $lessons
+        ];
+    }
+
+    /**
+     * @param Lesson $lesson
+     * @return array
+     */
+    public function sliders(Lesson $lesson): array
+    {
+        return [
+            'sliders' => $lesson->sliders
+        ];
+    }
+
+    public function videos(Lesson $lesson): array
+    {
+        return [
+            'videos' => $lesson->videos
+        ];
+    }
+
+    /**
+     * @param Lesson $lesson
+     * @return array
+     */
+    public function flashcards(Lesson $lesson): array
+    {
+        return [
+            'flashcards' => $lesson->flashcards
         ];
     }
 }
