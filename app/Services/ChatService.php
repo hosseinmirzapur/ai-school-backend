@@ -7,6 +7,7 @@ use App\External\ChatGPT;
 use App\Models\Chat;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\RateLimiter;
 use Throwable;
 
 readonly class ChatService
@@ -31,13 +32,12 @@ readonly class ChatService
         /** @var Student $student */
         $student = request()->user();
 
-        /** @var Chat $chat */
         if ($type === 'casual') {
             $chat = $student->newCasual();
         } else {
             $chat = $student->newQuiz();
         }
-
+        /** @var Chat $chat */
         return [
             'identifier' => $chat->identifier,
         ];
@@ -66,6 +66,9 @@ readonly class ChatService
 
                 // Send `aiData` to chatgpt
                 $response = $this->chatGPT->generate($aiData);
+
+                // Manually increment chat rate limit
+                RateLimiter::increment("{$chat->type}-chat");
 
                 // Save into DB after receiving response from chatgpt
                 $chat->messages()->create([
