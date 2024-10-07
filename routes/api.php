@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -37,4 +38,10 @@ Route::prefix('/pages')->group(function () {
 Route::prefix('/auth')->group(function () {
     Route::post('/login', [StudentController::class, 'login']);
     Route::post('/logout', [StudentController::class, 'logout'])->middleware('auth:api-student');
+});
+
+// Chat
+Route::middleware('auth:api-student')->prefix('/chat')->group(function () {
+    Route::post('/{type}', [ChatController::class, 'newChat']);
+    Route::post('/{identifier}/message', [ChatController::class, 'sendMessage']);
 });

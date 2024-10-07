@@ -1,6 +1,7 @@
 <?php
 
 use App\Exceptions\CustomException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -20,6 +21,13 @@ return Application::configure(basePath: dirname(__DIR__))
             return response()->json([
                 'message' => $e->getMessage(),
                 'status' => 400,
+            ]);
+        });
+
+        $exceptions->render(function(ModelNotFoundException $e, $request) {
+            return response()->json([
+                'message' => 'model_err',
+                'status' => 404,
             ]);
         });
     })->create();

@@ -136,4 +136,18 @@ class Student extends Model
             ->groupBy('subject_id')
             ->get();
     }
+
+    public function newQuiz()
+    {
+        return $this->chats()->create([
+            'type' => 'quiz',
+        ]);
+    }
+
+    public function newCasual()
+    {
+        return $this->chats()->create([
+            'type' => 'casual',
+        ]);
+    }
 }
