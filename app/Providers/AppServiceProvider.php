@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 
@@ -28,7 +31,34 @@ class AppServiceProvider extends ServiceProvider
         // passport tokens expire in 15 days
         Passport::tokensExpireIn(now()->addDays(15));
 
-        // Globally set $guarded variable false
+        // Globally set $guarded variable to an empty array
         Model::isUnguarded();
+
+        // Rate limiting chat APIs
+        RateLimiter::for('casual-chat', function (Request $request) {
+            return Limit::perDay(
+                (int)config('chat.casual.throttle')
+            )
+                ->by($request->user()?->id)
+                ->response(function (Request $request, array $headers) {
+                    return response()->json([
+                        'message' => 'throttle_err',
+                        'status' => 429
+                    ], 200, $headers);
+                });
+        });
+
+        RateLimiter::for('quiz-chat', function (Request $request) {
+            return Limit::perDay(
+                (int)config('chat.quiz.throttle')
+            )
+                ->by($request->user()?->id)
+                ->response(function (Request $request, array $headers) {
+                    return response()->json([
+                        'message' => 'throttle_err',
+                        'status' => 429
+                    ], 200, $headers);
+                });
+        });
     }
 }

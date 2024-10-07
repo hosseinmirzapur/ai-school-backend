@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
             $table->uuid('identifier');
-            $table->string('title')->nullable();
             $table->enum('type', ['casual', 'quiz']);
             $table->integer('score')->default(0);
             $table->boolean('active')->default(true);

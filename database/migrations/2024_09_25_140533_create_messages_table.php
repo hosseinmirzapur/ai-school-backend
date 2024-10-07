@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->enum('role', ['bot', 'user'])->default('user');
+            $table->enum('role', ['bot', 'user']);
             $table->text('content');
             $table->boolean('has_file')->default(false);
             $table->boolean('has_voice')->default(false);
