@@ -42,6 +42,8 @@ Route::prefix('/auth')->group(function () {
 
 // Chat
 Route::middleware('auth:api-student')->prefix('/chat')->group(function () {
-    Route::post('/{type}', [ChatController::class, 'newChat']);
+    Route::post('/{type}', [ChatController::class, 'newChat'])->where([
+        'type' => ['casual', 'quiz']
+    ]);
     Route::post('/{identifier}/message', [ChatController::class, 'sendMessage']);
 });
