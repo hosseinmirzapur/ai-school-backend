@@ -8,44 +8,54 @@ on:
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
 
     steps:
-      - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      # Setup PHP
+      - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
 
+      # Checkout code
       - uses: actions/checkout@v4
+
+      # Copy .env file if it doesn't exist
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
+      # Install dependencies
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
+      # Generate Laravel application key
       - name: Generate key
         run: php artisan key:generate
 
+      # Set correct directory permissions
       - name: Directory Permissions
-        run: chmod -R 777 storage bootstrap/cache
+        run: chmod -R 775 storage bootstrap/cache
 
+      # Run Larastan for static analysis (PHPStan)
       - name: Larastan Code Analysis
         run: ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1G
 
+      # Create SQLite Database
       - name: Create Database
         run: |
           mkdir -p database
           touch database/database.sqlite
 
+      # Passport keys
       - name: Passport configuration
-        run: |
-          php artisan passport:install
+        run: php artisan passport:keys
 
+      # Migrate and seed the database
       - name: Migrate & Seed Database
         run: |
           php artisan migrate
           php artisan db:seed --force
 
+      # Run tests (set DB connection and database file for SQLite)
       - name: Execute Feature Tests via PHPUnit
         env:
           DB_CONNECTION: sqlite
