@@ -19,4 +19,7 @@ todo:
 ide-model:
 	@php artisan ide-helper:model --write
 
+test:
+	@php artisan test --parallel --stop-on-failure tests/Feature
+
 .PHONY: sync analyse seed todo

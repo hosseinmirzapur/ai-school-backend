@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Classroom;
+use App\Models\School;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +22,7 @@ class ClassroomFactory extends Factory
             'name' => $this->faker->word(),
             'slug' => $this->faker->slug(),
             'grade' => $this->faker->numberBetween(1, 6),
-            'classroom_id' => Classroom::all()->random()->id,
+            'school_id' => School::all()->random()->id,
         ];
     }
 }
