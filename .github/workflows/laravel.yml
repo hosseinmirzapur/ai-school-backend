@@ -37,14 +37,14 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
 
+      - name: Passport configuration
+        run: |
+          php artisan passport:install
+
       - name: Migrate & Seed Database
         run: |
           php artisan migrate
           php artisan db:seed --force
-
-      - name: Passport configuration
-        run: |
-          php artisan passport:install
 
       - name: Execute Feature Tests via PHPUnit
         env:
