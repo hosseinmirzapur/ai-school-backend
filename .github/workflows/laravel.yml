@@ -42,7 +42,11 @@ jobs:
           php artisan migrate
           php artisan db:seed --force
 
-      - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
+      - name: Passport configuration
+        run: |
+          php artisan passport:install
+
+      - name: Execute Feature Tests via PHPUnit
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
