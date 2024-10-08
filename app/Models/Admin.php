@@ -6,7 +6,6 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -15,6 +14,7 @@ use Illuminate\Support\Carbon;
 use Laravel\Passport\Client;
 use Laravel\Passport\HasApiTokens;
 use Laravel\Passport\Token;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 /**
@@ -50,7 +50,7 @@ use Laravel\Passport\Token;
  * @method static Builder|Admin whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class Admin extends Model
+class Admin extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 

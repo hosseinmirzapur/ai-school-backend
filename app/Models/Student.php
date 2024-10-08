@@ -17,6 +17,7 @@ use Illuminate\Support\Carbon;
 use Laravel\Passport\Client;
 use Laravel\Passport\HasApiTokens;
 use Laravel\Passport\Token;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  *
@@ -62,7 +63,7 @@ use Laravel\Passport\Token;
  * @method static Builder|Student whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class Student extends Model
+class Student extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Chat;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,10 +19,12 @@ class ChatFactory extends Factory
      */
     public function definition(): array
     {
+        $type = $this->faker->randomElement(['casual', 'quiz']);
+
         return [
             'identifier' => $this->faker->uuid(),
-            'title' => $this->faker->sentence(),
-            'type' => $this->faker->randomElement(['casual', 'quiz']),
+            'type' => $type,
+            'subject_id' => $type === 'casual' ? null : Subject::all()->random()->id,
             'score' => $this->faker->numberBetween(0, 20),
             'active' => $this->faker->boolean(),
             'student_id' => Student::all()->random()->id,
