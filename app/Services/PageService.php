@@ -74,10 +74,8 @@ class PageService
             ->classroom
             ->dailySchedules()
             ->with('subject')
-            ->orderByRaw("FIELD(dow, 'sat', 'sun', 'mon', 'tue', 'wed', 'thu')")
             ->orderBy('start_time')
-            ->get()
-            ->groupBy('dow');
+            ->get();
 
         /**
          * Add `fullDuration` attribute to each day
@@ -134,6 +132,9 @@ class PageService
                 '>=',
                 now()->subDay()
             )
+            ->select([
+                'identifier', 'type', 'score', 'active'
+            ])
             ->get();
 
         return [

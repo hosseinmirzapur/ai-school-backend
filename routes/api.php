@@ -23,7 +23,7 @@ Route::middleware('auth:api-student')->prefix('/pages')->group(function () {
 
     // `/pages/chat` related routes
     Route::prefix('/chat')->group(function () {
-        Route::get('/', [PageController::class, 'chat']);
+        Route::get('/history', [PageController::class, 'chat']);
         Route::get('/{identifier}', [PageController::class, 'messages']);
     });
 });
@@ -43,7 +43,7 @@ Route::prefix('/auth')->group(function () {
 // Chat
 Route::middleware('auth:api-student')->prefix('/chat')->group(function () {
     Route::post('/{type}', [ChatController::class, 'newChat'])->where([
-        'type' => ['casual', 'quiz']
+        'type' => 'casual|quiz'
     ]);
     Route::post('/{identifier}/message', [ChatController::class, 'sendMessage']);
 });
