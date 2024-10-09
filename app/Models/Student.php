@@ -3,7 +3,6 @@
 namespace App\Models;
 use Database\Factories\StudentFactory;
 use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,7 +27,6 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property string $password
  * @property string|null $gender
  * @property string|null $dob
- * @property int $school_id
  * @property int $classroom_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -39,38 +37,14 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property-read int|null $messages_count
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read School $school
  * @property-read Collection<int, PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static StudentFactory factory($count = null, $state = [])
- * @method static Builder|Student newModelQuery()
- * @method static Builder|Student newQuery()
- * @method static Builder|Student query()
- * @method static Builder|Student whereClassroomId($value)
- * @method static Builder|Student whereCreatedAt($value)
- * @method static Builder|Student whereDob($value)
- * @method static Builder|Student whereEmail($value)
- * @method static Builder|Student whereGender($value)
- * @method static Builder|Student whereId($value)
- * @method static Builder|Student whereMobile($value)
- * @method static Builder|Student whereName($value)
- * @method static Builder|Student wherePassword($value)
- * @method static Builder|Student whereSchoolId($value)
- * @method static Builder|Student whereUpdatedAt($value)
- * @method static Builder|Student whereUsername($value)
  * @mixin Eloquent
  */
 class Student extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
-
-    /**
-     * @return BelongsTo
-     */
-    public function school(): BelongsTo
-    {
-        return $this->belongsTo(School::class);
-    }
 
     /**
      * @return BelongsTo

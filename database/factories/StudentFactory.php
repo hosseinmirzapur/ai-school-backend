@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Classroom;
-use App\Models\School;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +27,6 @@ class StudentFactory extends Factory
             'password' => Hash::make('password'),
             'gender' => $this->faker->randomElement(['male', 'female']),
             'dob' => $this->faker->date(),
-            'school_id' => School::all()->random()->id,
             'classroom_id' => Classroom::all()->random()->id,
         ];
     }

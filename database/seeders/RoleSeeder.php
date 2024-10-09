@@ -17,6 +17,6 @@ class RoleSeeder extends Seeder
             'permissions' => ['*']
         ]);
 
-        $this->command->getOutput()->success("Role {$role->name} created!");
+        $this->command->getOutput()->success("Role $role->name created!");
     }
 }
