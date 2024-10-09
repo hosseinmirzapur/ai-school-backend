@@ -45,10 +45,6 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
 
-      # Passport keys
-      - name: Passport configuration
-        run: php artisan passport:keys
-
       # Migrate and seed the database
       - name: Migrate & Seed Database
         run: |
