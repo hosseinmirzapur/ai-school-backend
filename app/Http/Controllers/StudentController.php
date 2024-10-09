@@ -8,7 +8,6 @@ use App\Http\Requests\LoginRequest;
 use App\Models\Student;
 use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -30,13 +29,12 @@ class StudentController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return JsonResponse
      */
-    public function logout(Request $request): JsonResponse
+    public function logout(): JsonResponse
     {
         /** @var Student $student */
-        $student = $request->user();
+        $student = request()->user();
         $student->tokens()->delete();
         return response()->json();
     }

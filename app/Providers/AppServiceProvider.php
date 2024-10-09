@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,8 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // ignoring default routes defined by passport internally
-        Passport::ignoreRoutes();
+
     }
 
     /**
@@ -26,12 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // only hashed client secrets will be stored in database
-        Passport::hashClientSecrets();
-
-        // passport tokens expire in 15 days
-        Passport::tokensExpireIn(now()->addDays(15));
-
         // Globally set $guarded variable to an empty array
         Model::isUnguarded();
 

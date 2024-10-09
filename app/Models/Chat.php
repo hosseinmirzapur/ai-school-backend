@@ -14,7 +14,7 @@ use Illuminate\Support\Carbon;
 
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $identifier

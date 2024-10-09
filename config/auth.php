@@ -45,15 +45,15 @@ return [
             'provider' => 'users',
         ],
         'api-teacher' => [
-            'driver' => 'passport',
+            'driver' => 'sanctum',
             'provider' => 'teachers',
         ],
         'api-student' => [
-            'driver' => 'passport',
+            'driver' => 'sanctum',
             'provider' => 'students',
         ],
         'api-admin' => [
-            'driver' => 'passport',
+            'driver' => 'sanctum',
             'provider' => 'admins',
         ],
     ],
@@ -88,11 +88,6 @@ return [
             'driver' => 'eloquent',
             'model' => Admin::class
         ]
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
