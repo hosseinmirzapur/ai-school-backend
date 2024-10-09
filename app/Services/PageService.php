@@ -75,7 +75,8 @@ class PageService
             ->dailySchedules()
             ->with('subject')
             ->orderBy('start_time')
-            ->get();
+            ->get()
+            ->groupBy('dow');
 
         /**
          * Add `fullDuration` attribute to each day

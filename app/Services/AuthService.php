@@ -27,7 +27,7 @@ class AuthService
 
         return [
             'student' => $student,
-            'token' => $student->createToken($student->username)->accessToken,
+            'token' => $student->createToken($student->username)->plainTextToken,
         ];
     }
 }

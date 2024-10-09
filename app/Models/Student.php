@@ -1,31 +1,28 @@
 <?php
 
 namespace App\Models;
-
 use Database\Factories\StudentFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Carbon;
-use Laravel\Passport\Client;
-use Laravel\Passport\HasApiTokens;
-use Laravel\Passport\Token;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Carbon;
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\PersonalAccessToken;
 
 /**
  *
  *
  * @property int $id
  * @property string|null $name
- * @property string $mobile
- * @property string $email
+ * @property string|null $mobile
+ * @property string|null $email
  * @property string $username
  * @property string $password
  * @property string|null $gender
@@ -37,14 +34,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property-read Collection<int, Chat> $chats
  * @property-read int|null $chats_count
  * @property-read Classroom $classroom
- * @property-read Collection<int, Client> $clients
- * @property-read int|null $clients_count
  * @property-read Collection<int, Message> $messages
  * @property-read int|null $messages_count
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read School $school
- * @property-read Collection<int, Token> $tokens
+ * @property-read Collection<int, PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static StudentFactory factory($count = null, $state = [])
  * @method static Builder|Student newModelQuery()
@@ -61,6 +56,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static Builder|Student wherePassword($value)
  * @method static Builder|Student whereSchoolId($value)
  * @method static Builder|Student whereUpdatedAt($value)
+ * @method static Builder|Student whereUsername($value)
  * @mixin Eloquent
  */
 class Student extends Authenticatable
