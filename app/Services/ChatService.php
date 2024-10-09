@@ -22,13 +22,6 @@ readonly class ChatService
      */
     public function newChat(string $type): array
     {
-        // `type` validation
-        if (!in_array($type, ['casual', 'quiz'])) {
-            return [
-                'message' => 'type_err',
-                'status' => 400
-            ];
-        }
         /** @var Student $student */
         $student = request()->user();
 

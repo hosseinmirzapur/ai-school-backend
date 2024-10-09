@@ -13,6 +13,7 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
 
@@ -138,6 +139,7 @@ class Student extends Authenticatable
     {
         return $this->chats()->create([
             'type' => 'quiz',
+            'identifier' => Str::uuid()
         ]);
     }
 
@@ -145,6 +147,7 @@ class Student extends Authenticatable
     {
         return $this->chats()->create([
             'type' => 'casual',
+            'identifier' => Str::uuid()
         ]);
     }
 }

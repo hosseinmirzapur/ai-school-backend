@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Globally set $guarded variable to an empty array
-        Model::isUnguarded();
+        Model::unguard();
 
         // Rate limiting chat APIs
         RateLimiter::for('casual-chat', function (Request $request) {

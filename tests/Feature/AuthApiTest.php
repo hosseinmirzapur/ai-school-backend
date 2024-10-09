@@ -15,7 +15,7 @@ class AuthApiTest extends TestCase
     {
         parent::setUp();
 
-        $this->seed(DatabaseSeeder::class);
+        $this->seed();
     }
 
     public function test_login()

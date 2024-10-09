@@ -25,12 +25,12 @@ class SendMessageRequest extends FormRequest
     {
         return [
             'file' => [
-                'required',
+                'nullable',
                 'file',
                 'max:10240',
                 'mimetypes:application/pdf,image/*,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
             ],
-            'voice' => 'required|mimetypes:audio/mpeg,audio/mp4,audio/x-wav,audio/webm|max:20480',
+            'voice' => 'nullable|mimetypes:audio/mpeg,audio/mp4,audio/x-wav,audio/webm|max:20480',
             'content' => 'required_if:voice,null'
         ];
     }
