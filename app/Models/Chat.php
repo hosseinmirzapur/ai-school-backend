@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Database\Factories\ChatFactory;
 use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +13,7 @@ use Illuminate\Support\Carbon;
 
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $identifier
@@ -27,23 +26,10 @@ use Illuminate\Support\Carbon;
  * @property-read Student $student
  * @property-read Subject|null $subject
  * @method static ChatFactory factory($count = null, $state = [])
- * @method static Builder|Chat newModelQuery()
- * @method static Builder|Chat newQuery()
- * @method static Builder|Chat query()
- * @method static Builder|Chat whereCreatedAt($value)
- * @method static Builder|Chat whereId($value)
- * @method static Builder|Chat whereIdentifier($value)
- * @method static Builder|Chat whereStudentId($value)
- * @method static Builder|Chat whereTitle($value)
- * @method static Builder|Chat whereUpdatedAt($value)
  * @property string $type
  * @property int $score
  * @property int $active
  * @property int|null $subject_id
- * @method static Builder|Chat whereActive($value)
- * @method static Builder|Chat whereScore($value)
- * @method static Builder|Chat whereSubjectId($value)
- * @method static Builder|Chat whereType($value)
  * @mixin Eloquent
  */
 class Chat extends Model

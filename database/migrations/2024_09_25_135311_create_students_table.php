@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('gender')->nullable();
             $table->date('dob')->nullable();
-            $table->foreignId('school_id')
-                ->constrained('schools')
-                ->cascadeOnDelete();
             $table->foreignId('classroom_id')
                 ->constrained('classrooms')
                 ->cascadeOnDelete();
