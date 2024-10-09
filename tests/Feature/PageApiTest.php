@@ -132,7 +132,6 @@ class PageApiTest extends TestCase
             'api-student'
         )
             ->get('/api/pages/weekly-schedule')
-            ->dump()
             ->assertStatus(200)
             ->assertJsonStructure([
                 'schedule' => [
