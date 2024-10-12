@@ -9,10 +9,7 @@ parameters:
         - config
         - database
         - lang
-        - public
-        - resources
         - routes
-        - storage
         - tests
     ignoreErrors:
         - identifier: missingType.iterableValue
