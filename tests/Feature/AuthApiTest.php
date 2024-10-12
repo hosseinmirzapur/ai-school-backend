@@ -11,6 +11,9 @@ class AuthApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @return void
+     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -18,7 +21,10 @@ class AuthApiTest extends TestCase
         $this->seed();
     }
 
-    public function test_login()
+    /**
+     * @return void
+     */
+    public function test_login(): void
     {
         /** @var Student $student */
         $student = Student::all()->random();
@@ -35,7 +41,10 @@ class AuthApiTest extends TestCase
             ]);
     }
 
-    public function test_logout()
+    /**
+     * @return void
+     */
+    public function test_logout(): void
     {
         $this->actingAs(Student::all()->random())
             ->post('/api/auth/logout')

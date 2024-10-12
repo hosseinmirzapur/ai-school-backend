@@ -14,6 +14,9 @@ class ChatApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @return void
+     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -25,7 +28,10 @@ class ChatApiTest extends TestCase
         ]);
     }
 
-    public function test_new_casual_chat()
+    /**
+     * @return void
+     */
+    public function test_new_casual_chat(): void
     {
         $this->actingAs(Student::all()->random())
             ->post('/api/chat/casual')
@@ -33,7 +39,10 @@ class ChatApiTest extends TestCase
             ->assertJsonStructure(['identifier']);
     }
 
-    public function test_new_quiz_chat()
+    /**
+     * @return void
+     */
+    public function test_new_quiz_chat(): void
     {
         $this->actingAs(Student::all()->random())
             ->post('/api/chat/quiz')
@@ -41,7 +50,10 @@ class ChatApiTest extends TestCase
             ->assertJsonStructure(['identifier']);
     }
 
-    public function test_new_chat_with_wrong_type_should_fail()
+    /**
+     * @return void
+     */
+    public function test_new_chat_with_wrong_type_should_fail(): void
     {
         $randomString = Str::random(10);
         $this->actingAs(Student::all()->random())
@@ -49,7 +61,10 @@ class ChatApiTest extends TestCase
             ->assertNotFound();
     }
 
-    public function test_send_message_to_chat()
+    /**
+     * @return void
+     */
+    public function test_send_message_to_chat(): void
     {
         $message = Message::factory()->create();
         $chat = Chat::all()->random();

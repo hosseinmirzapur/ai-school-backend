@@ -2,7 +2,18 @@ includes:
     - vendor/larastan/larastan/extension.neon
 
 parameters:
+    level: 8
     paths:
         - app
+        - bootstrap
+        - config
         - database
-    level: 5
+        - lang
+        - public
+        - resources
+        - routes
+        - storage
+        - tests
+    ignoreErrors:
+        - identifier: missingType.iterableValue
+        - identifier: missingType.generics

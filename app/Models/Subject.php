@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -25,15 +25,6 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $teachers_count
  * @property-read Collection<int, Lesson> $lessons
  * @property-read int|null $lessons_count
- * @method static Builder|Subject newModelQuery()
- * @method static Builder|Subject newQuery()
- * @method static Builder|Subject query()
- * @method static Builder|Subject whereCreatedAt($value)
- * @method static Builder|Subject whereId($value)
- * @method static Builder|Subject whereImage($value)
- * @method static Builder|Subject whereName($value)
- * @method static Builder|Subject whereSlug($value)
- * @method static Builder|Subject whereUpdatedAt($value)
  * @mixin Eloquent
  */
 class Subject extends Model

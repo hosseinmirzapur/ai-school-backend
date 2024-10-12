@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $question
@@ -22,16 +22,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property-read Lesson $lesson
  * @method static FlashcardFactory factory($count = null, $state = [])
- * @method static Builder|Flashcard newModelQuery()
- * @method static Builder|Flashcard newQuery()
- * @method static Builder|Flashcard query()
- * @method static Builder|Flashcard whereAnswer($value)
- * @method static Builder|Flashcard whereCreatedAt($value)
- * @method static Builder|Flashcard whereId($value)
- * @method static Builder|Flashcard whereImage($value)
- * @method static Builder|Flashcard whereLessonId($value)
- * @method static Builder|Flashcard whereQuestion($value)
- * @method static Builder|Flashcard whereUpdatedAt($value)
  * @mixin Eloquent
  */
 class Flashcard extends Model

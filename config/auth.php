@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Admin;
 use App\Models\Student;
 use App\Models\Teacher;
 
@@ -52,10 +51,6 @@ return [
             'driver' => 'sanctum',
             'provider' => 'students',
         ],
-        'api-admin' => [
-            'driver' => 'sanctum',
-            'provider' => 'admins',
-        ],
     ],
 
     /*
@@ -84,10 +79,6 @@ return [
             'driver' => 'eloquent',
             'model' => Student::class
         ],
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => Admin::class
-        ]
     ],
 
     /*

@@ -183,6 +183,10 @@ class PageService
         ];
     }
 
+    /**
+     * @param Lesson $lesson
+     * @return array
+     */
     public function videos(Lesson $lesson): array
     {
         return [
@@ -201,6 +205,10 @@ class PageService
         ];
     }
 
+    /**
+     * @param Chat $chat
+     * @return array
+     */
     public function messages(Chat $chat): array
     {
         $messages = $chat->messages;

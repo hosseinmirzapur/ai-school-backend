@@ -42,7 +42,7 @@ readonly class ChatService
     public function sendMessage(string $identifier, array $data): array
     {
         /** @var Chat $chat */
-        $chat = Chat::whereIdentifier($identifier)->firstOrFail();
+        $chat = Chat::where('identifier', $identifier)->firstOrFail();
 
         try {
             $result = DB::transaction(function () use ($chat, $data) {
@@ -61,7 +61,7 @@ readonly class ChatService
                 $response = $this->chatGPT->generate($aiData);
 
                 // Manually increment chat rate limit
-                RateLimiter::increment("{$chat->type}-chat");
+                RateLimiter::increment("$chat->type-chat");
 
                 // Save into DB after receiving response from chatgpt
                 $chat->messages()->create([
