@@ -11,8 +11,8 @@ class ChatGPT extends AIProvider
 
     public function __construct()
     {
-        $this->apiKey = config('services.openai.key');
-        $this->baseUrl = config('services.openai.baseUrl');
+        $this->apiKey = strval(config('services.openai.key'));
+        $this->baseUrl = strval(config('services.openai.baseUrl'));
         // this may change...
         $this->headers = [
             'Accept' => 'application/json',
