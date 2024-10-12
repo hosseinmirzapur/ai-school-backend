@@ -13,6 +13,9 @@ class PageApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @return void
+     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -21,7 +24,10 @@ class PageApiTest extends TestCase
 
     }
 
-    public function test_home_page()
+    /**
+     * @return void
+     */
+    public function test_home_page(): void
     {
         $response = $this->actingAs(
             Student::factory()->create(),
@@ -35,7 +41,10 @@ class PageApiTest extends TestCase
         ]);
     }
 
-    public function test_sources_page()
+    /**
+     * @return void
+     */
+    public function test_sources_page(): void
     {
         $response = $this->actingAs(
             Student::factory()->create(),
@@ -50,7 +59,10 @@ class PageApiTest extends TestCase
         ]);
     }
 
-    public function test_lessons_page()
+    /**
+     * @return void
+     */
+    public function test_lessons_page(): void
     {
         /** @var Subject $subject */
         $subject = Subject::all()->random();
@@ -69,7 +81,10 @@ class PageApiTest extends TestCase
 
     }
 
-    public function test_sliders_page()
+    /**
+     * @return void
+     */
+    public function test_sliders_page(): void
     {
         /** @var Lesson $lesson */
         $lesson = Lesson::whereHas('sliders')->get()->random();
@@ -89,7 +104,10 @@ class PageApiTest extends TestCase
 
     }
 
-    public function test_videos_page()
+    /**
+     * @return void
+     */
+    public function test_videos_page(): void
     {
         /** @var lesson $lesson */
         $lesson = Lesson::whereHas('videos')->get()->random();
@@ -107,7 +125,10 @@ class PageApiTest extends TestCase
             ]);
     }
 
-    public function test_flashcards_page()
+    /**
+     * @return void
+     */
+    public function test_flashcards_page(): void
     {
         /** @var Lesson $lesson */
         $lesson = Lesson::whereHas('flashcards')->get()->random();
@@ -125,7 +146,10 @@ class PageApiTest extends TestCase
             ]);
     }
 
-    public function test_weekly_schedule_page()
+    /**
+     * @return void
+     */
+    public function test_weekly_schedule_page(): void
     {
         $this->actingAs(
             Student::factory()->create(),
@@ -142,7 +166,10 @@ class PageApiTest extends TestCase
             ]);
     }
 
-    public function test_notifications_page()
+    /**
+     * @return void
+     */
+    public function test_notifications_page(): void
     {
         $this->actingAs(
             Student::factory()->create(),
@@ -155,7 +182,10 @@ class PageApiTest extends TestCase
             ]);
     }
 
-    public function test_settings_page()
+    /**
+     * @return void
+     */
+    public function test_settings_page(): void
     {
         $this->actingAs(
             Student::factory()->create(),
@@ -168,7 +198,10 @@ class PageApiTest extends TestCase
             ]);
     }
 
-    public function test_chat_page()
+    /**
+     * @return void
+     */
+    public function test_chat_page(): void
     {
         $this->actingAs(
             Student::factory()->create(),
@@ -185,7 +218,10 @@ class PageApiTest extends TestCase
             ]);
     }
 
-    public function test_chat_messages_are_loaded()
+    /**
+     * @return void
+     */
+    public function test_chat_messages_are_loaded(): void
     {
         /** @var Chat $chat */
         $chat = Chat::all()->random();
@@ -205,7 +241,10 @@ class PageApiTest extends TestCase
             ]);
     }
 
-    public function test_about_us_page()
+    /**
+     * @return void
+     */
+    public function test_about_us_page(): void
     {
         $this->get('/api/pages/about-us')
             ->assertStatus(200)
@@ -214,7 +253,10 @@ class PageApiTest extends TestCase
             ]);
     }
 
-    public function test_contact_us_page()
+    /**
+     * @return void
+     */
+    public function test_contact_us_page(): void
     {
         $this->get('/api/pages/contact-us')
             ->assertStatus(200)

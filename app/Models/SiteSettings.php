@@ -9,21 +9,13 @@ use Illuminate\Support\Carbon;
 
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $key
  * @property string $value
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @method static Builder|SiteSettings newModelQuery()
- * @method static Builder|SiteSettings newQuery()
- * @method static Builder|SiteSettings query()
- * @method static Builder|SiteSettings whereCreatedAt($value)
- * @method static Builder|SiteSettings whereId($value)
- * @method static Builder|SiteSettings whereKey($value)
- * @method static Builder|SiteSettings whereUpdatedAt($value)
- * @method static Builder|SiteSettings whereValue($value)
  * @mixin Eloquent
  */
 class SiteSettings extends Model

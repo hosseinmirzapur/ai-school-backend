@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $name
@@ -27,15 +27,6 @@ use Illuminate\Support\Carbon;
  * @property-read Subject $subject
  * @property-read Collection<int, Video> $videos
  * @property-read int|null $videos_count
- * @method static Builder|Lesson newModelQuery()
- * @method static Builder|Lesson newQuery()
- * @method static Builder|Lesson query()
- * @method static Builder|Lesson whereCreatedAt($value)
- * @method static Builder|Lesson whereId($value)
- * @method static Builder|Lesson whereName($value)
- * @method static Builder|Lesson whereSlug($value)
- * @method static Builder|Lesson whereSubjectId($value)
- * @method static Builder|Lesson whereUpdatedAt($value)
  * @mixin Eloquent
  */
 class Lesson extends Model

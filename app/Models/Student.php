@@ -5,6 +5,7 @@ use Database\Factories\StudentFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\DatabaseNotification;
@@ -109,7 +110,10 @@ class Student extends Authenticatable
             ->get();
     }
 
-    public function newQuiz()
+    /**
+     * @return Chat|Model
+     */
+    public function newQuiz(): Chat | Model
     {
         return $this->chats()->create([
             'type' => 'quiz',
@@ -117,7 +121,10 @@ class Student extends Authenticatable
         ]);
     }
 
-    public function newCasual()
+    /**
+     * @return Chat|Model
+     */
+    public function newCasual(): Chat | Model
     {
         return $this->chats()->create([
             'type' => 'casual',

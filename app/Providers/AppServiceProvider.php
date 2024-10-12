@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
             $student = $request->user();
 
             return Limit::perDay(
-                (int)config('chat.casual.throttle')
+                intval(config('chat.casual.throttle'))
             )
                 ->by($student->id)
                 ->response(function (Request $request, array $headers) {
@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
             $student = $request->user();
 
             return Limit::perDay(
-                (int)config('chat.quiz.throttle')
+                intval(config('chat.quiz.throttle'))
             )
                 ->by($student->id)
                 ->response(function (Request $request, array $headers) {

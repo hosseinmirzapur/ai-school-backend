@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $dow
@@ -24,18 +24,6 @@ use Illuminate\Support\Carbon;
  * @property-read Classroom $classroom
  * @property-read Subject $subject
  * @property-read Teacher $teacher
- * @method static Builder|DailySchedule newModelQuery()
- * @method static Builder|DailySchedule newQuery()
- * @method static Builder|DailySchedule query()
- * @method static Builder|DailySchedule whereClassroomId($value)
- * @method static Builder|DailySchedule whereCreatedAt($value)
- * @method static Builder|DailySchedule whereDow($value)
- * @method static Builder|DailySchedule whereEndTime($value)
- * @method static Builder|DailySchedule whereId($value)
- * @method static Builder|DailySchedule whereStartTime($value)
- * @method static Builder|DailySchedule whereSubjectId($value)
- * @method static Builder|DailySchedule whereTeacherId($value)
- * @method static Builder|DailySchedule whereUpdatedAt($value)
  * @property-read int $duration
  * @mixin Eloquent
  */
