@@ -34,10 +34,9 @@ class SlidersRelationManager extends RelationManager
             ->recordTitleAttribute('id')
             ->heading('اسلایدر ها')
             ->columns([
-                Tables\Columns\TextColumn::make('id')->label('#'),
-            ])
-            ->filters([
-                //
+                Tables\Columns\TextColumn::make('id')
+                    ->label('#'),
+
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

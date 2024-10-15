@@ -37,11 +37,10 @@ class SubjectResource extends Resource
                     ->required(),
                 TextInput::make('slug')
                     ->label('شناسه')
+                    ->helperText('این فیلد به صورت خودکار پر میشود')
                     ->default(
                         Str::lower(Str::random(10))
-                    )
-                    ->autocomplete()
-                    ->disabled(),
+                    ),
                 FileUpload::make('image')
                     ->label('عکس')
                     ->nullable()
