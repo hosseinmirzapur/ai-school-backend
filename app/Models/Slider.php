@@ -34,4 +34,14 @@ class Slider extends Model
     {
         return $this->belongsTo(Lesson::class);
     }
+
+    /**
+     * @param string|null $value
+     * @return string
+     */
+    public function getCreatedAtAttribute(string|null $value): string
+    {
+        /* @phpstan-ignore-next-line */
+        return verta($value)->format('Y/m/d');
+    }
 }

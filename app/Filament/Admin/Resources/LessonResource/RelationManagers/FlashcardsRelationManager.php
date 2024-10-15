@@ -14,7 +14,7 @@ class FlashcardsRelationManager extends RelationManager
 {
     protected static string $relationship = 'flashcards';
     protected static ?string $label = 'فلش کارت';
-    protected static ?string $pluralLabel = 'فلش کارت ها';
+    protected static ?string $pluralLabel = 'فلش کارتی';
 
     protected static ?string $badge = 'فلش کارت ها';
 
@@ -31,13 +31,9 @@ class FlashcardsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('id')
             ->heading('فلش کارت ها')
             ->columns([
                 Tables\Columns\TextColumn::make('id')->label('#'),
-            ])
-            ->filters([
-                //
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
