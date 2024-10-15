@@ -24,6 +24,9 @@ class LessonResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-bookmark-square';
 
+    /**
+     * @return bool
+     */
     public static function canCreate(): bool
     {
         return false;
@@ -51,8 +54,8 @@ class LessonResource extends Resource
                     ->label('شناسه')
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make()->tooltip('ویرایش درس یا محتوای آن'),
+                Tables\Actions\ViewAction::make()->tooltip('نمایش جزییات درس و محتوای آن'),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->filters([
@@ -75,7 +78,7 @@ class LessonResource extends Resource
             SlidersRelationManager::class,
             VideosRelationManager::class,
             FlashcardsRelationManager::class
-        ]; // todo: implement relations tables
+        ];
     }
 
     public static function getPages(): array
