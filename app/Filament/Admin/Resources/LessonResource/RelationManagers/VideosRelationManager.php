@@ -14,7 +14,7 @@ class VideosRelationManager extends RelationManager
 {
     protected static string $relationship = 'videos';
     protected static ?string $label = 'ویدئو';
-    protected static ?string $pluralLabel = 'ویدئو ها';
+    protected static ?string $pluralLabel = 'ویدئویی';
     protected static ?string $badge = 'ویدئو ها';
 
     /**
@@ -53,7 +53,6 @@ class VideosRelationManager extends RelationManager
                         'video/webm',
                         'video/ogg'
                     ])
-                    ->maxSize(200_000) // in kilobytes
                     ->uploadingMessage('در حال آپلود...')
             ])->columns(1);
     }
@@ -62,7 +61,6 @@ class VideosRelationManager extends RelationManager
     {
         return $table
             ->heading('ویدئو ها')
-            ->recordTitleAttribute('id')
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('#')

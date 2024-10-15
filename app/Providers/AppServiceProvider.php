@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Student;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -59,5 +60,8 @@ class AppServiceProvider extends ServiceProvider
                     ], 200, $headers);
                 });
         });
+
+        // Verta language
+        Verta::setLocale(config('app.locale'));
     }
 }

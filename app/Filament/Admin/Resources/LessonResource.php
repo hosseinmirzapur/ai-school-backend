@@ -9,9 +9,14 @@ use App\Filament\Admin\Resources\LessonResource\RelationManagers\VideosRelationM
 use App\Models\Lesson;
 use App\Models\Subject;
 use Exception;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class LessonResource extends Resource
 {
@@ -30,6 +35,29 @@ class LessonResource extends Resource
     public static function canCreate(): bool
     {
         return false;
+    }
+
+    public static function form(Form $form): Form
+    {
+        $subjects = Subject::all()->pluck('name', 'id');
+
+        return $form
+            ->schema([
+                TextInput::make('name')
+                    ->label('اسم درس')
+                    ->helperText('عنوان کتابی که میخواهید ایجاد کنید را در این قسمت بنویسید')
+                    ->required(),
+                TextInput::make('slug')
+                    ->label('شناسه')
+                    ->helperText('این فیلد به صورت خودکار پر میشود')
+                    ->default(
+                        Str::lower(Str::random(10))
+                    ),
+                Select::make('subject_id')
+                    ->label('کتاب درسی')
+                    ->options($subjects)
+                    ->native(false)
+            ]);
     }
 
     /**
