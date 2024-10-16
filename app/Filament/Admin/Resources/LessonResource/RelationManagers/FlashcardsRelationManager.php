@@ -49,7 +49,6 @@ class FlashcardsRelationManager extends RelationManager
                     ])
                     ->imageEditorEmptyFillColor('#000000')
                     ->uploadingMessage('در حال آپلود...')
-                    ->nullable(),
             ])
             ->columns(1);
     }
