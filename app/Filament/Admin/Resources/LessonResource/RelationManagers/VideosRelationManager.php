@@ -44,17 +44,15 @@ class VideosRelationManager extends RelationManager
                         '1:1',
                         null
                     ])
+                    ->maxSize(1024 * 12)
                     ->imageEditorEmptyFillColor('#000000')
                     ->uploadingMessage('در حال آپلود...'),
                 Forms\Components\FileUpload::make('file')
                     ->label('فایل ویدئو')
-                    ->acceptedFileTypes([
-                        'video/mp4',
-                        'video/webm',
-                        'video/ogg'
-                    ])
                     ->uploadingMessage('در حال آپلود...')
-            ])->columns(1);
+                    ->acceptedFileTypes(['video/*'])
+            ])
+            ->columns(1);
     }
 
     public function table(Table $table): Table
@@ -72,7 +70,8 @@ class VideosRelationManager extends RelationManager
                     ->label('توضیحات')
                     ->searchable()
                     ->tooltip(fn(Video $video) => $video->description)
-                    ->words(5),
+                    ->words(5)
+                    ->html(),
                 Tables\Columns\ImageColumn::make('thumbnail')
                     ->label('تصویر پیش نمایش')
                     ->square()

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 /**
  *
@@ -35,5 +36,22 @@ class Video extends Model
     public function lesson(): BelongsTo
     {
         return $this->belongsTo(Lesson::class);
+    }
+
+    /**
+     * @param string|null $value
+     * @return string|null
+     */
+    public function getFileAttribute(?string $value): ?string
+    {
+        if (is_null($value)) {
+            return null;
+        }
+
+        if (str_contains($value, 'http')) {
+            return $value;
+        }
+
+        return Storage::url($value);
     }
 }
