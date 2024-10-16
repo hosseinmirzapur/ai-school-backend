@@ -22,4 +22,7 @@ ide-model:
 test:
 	@php artisan test --parallel --stop-on-failure tests/Feature
 
-.PHONY: sync analyse seed todo
+freelog:
+	@echo "" > ./storage/logs/laravel.log
+
+.PHONY: sync analyse seed todo ide-model test freelog
