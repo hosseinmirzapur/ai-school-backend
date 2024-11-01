@@ -64,4 +64,12 @@ class Lesson extends Model
     {
         return $this->hasMany(Slider::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function dictations(): HasMany
+    {
+        return $this->hasMany(Dictation::class);
+    }
 }

@@ -55,7 +55,7 @@ class LessonsRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->label('مدیریت'),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\ViewAction::make()
             ])

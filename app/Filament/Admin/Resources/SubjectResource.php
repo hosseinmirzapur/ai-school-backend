@@ -64,13 +64,12 @@ class SubjectResource extends Resource
                     ->square()
 
             ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make()
-            ])
+            ->actions(
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make()->label('مدیریت'),
+                    Tables\Actions\ViewAction::make()
+                ])
+            )
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
