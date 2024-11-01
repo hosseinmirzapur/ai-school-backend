@@ -3,6 +3,7 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\LessonResource\Pages;
+use App\Filament\Admin\Resources\LessonResource\RelationManagers\DictationsRelationManager;
 use App\Filament\Admin\Resources\LessonResource\RelationManagers\FlashcardsRelationManager;
 use App\Filament\Admin\Resources\LessonResource\RelationManagers\SlidersRelationManager;
 use App\Filament\Admin\Resources\LessonResource\RelationManagers\VideosRelationManager;
@@ -81,11 +82,16 @@ class LessonResource extends Resource
                     ->searchable()
                     ->label('شناسه')
             ])
-            ->actions([
-                Tables\Actions\EditAction::make()->tooltip('ویرایش درس یا محتوای آن'),
-                Tables\Actions\ViewAction::make()->tooltip('نمایش جزییات درس و محتوای آن'),
-                Tables\Actions\DeleteAction::make(),
-            ])
+            ->actions(
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make()
+                        ->label('مدیریت')
+                        ->tooltip('ویرایش درس یا محتوای آن'),
+                    Tables\Actions\ViewAction::make()
+                        ->tooltip('نمایش جزییات درس و محتوای آن'),
+                    Tables\Actions\DeleteAction::make(),
+                ])
+            )
             ->filters([
                 Tables\Filters\SelectFilter::make('subject_to_find')
                     ->label('درس')
@@ -105,7 +111,8 @@ class LessonResource extends Resource
         return [
             SlidersRelationManager::class,
             VideosRelationManager::class,
-            FlashcardsRelationManager::class
+            FlashcardsRelationManager::class,
+            DictationsRelationManager::class
         ];
     }
 
