@@ -4,6 +4,7 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\StudentResource\Pages;
 use App\Filament\Admin\Resources\StudentResource\Widgets\ChatUsageChart;
+use App\Filament\Admin\Resources\StudentResource\Widgets\StudentGradesChart;
 use App\Filament\Exports\StudentExporter;
 use App\Models\Student;
 use Exception;
@@ -209,7 +210,8 @@ class StudentResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            ChatUsageChart::class
+            ChatUsageChart::class,
+            StudentGradesChart::class,
         ];
     }
 }

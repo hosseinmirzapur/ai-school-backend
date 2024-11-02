@@ -21,6 +21,7 @@ class ListStudents extends ListRecords
     {
         return [
             StudentResource\Widgets\ChatUsageChart::class,
+            StudentResource\Widgets\StudentGradesChart::class
         ];
     }
 }
