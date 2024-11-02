@@ -3,6 +3,7 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\StudentResource\Pages;
+use App\Filament\Admin\Resources\StudentResource\Widgets\ChatUsageChart;
 use App\Filament\Exports\StudentExporter;
 use App\Models\Student;
 use Exception;
@@ -25,6 +26,10 @@ class StudentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    public static function canCreate(): bool
+    {
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
@@ -56,18 +61,22 @@ class StudentResource extends Resource
             ->headerActions([
                 Tables\Actions\ExportAction::make('students')
                     ->after(function () {
-                        $id = Export::query()->latest()->first()->id;
+                        /** @var Export $export */
+                        $export = Export::query()->latest()->first();
+                        $id = $export->id;
                         $path = "filament_exports/$id/export-$id-students.xlsx";
                         $stdCount = Student::count();
                         $waitBaseTime = 0.05;
                         // wait until the file is created
-                        sleep($stdCount * $waitBaseTime);
+                        sleep((int)ceil($stdCount * $waitBaseTime));
 
                         if (Storage::disk('public')->exists($path)) {
                             return response()->stream(
                                 function () use ($path, $id) {
                                     $stream = Storage::disk('public')->readStream($path);
+                                    /** @phpstan-ignore-next-line */
                                     fpassthru($stream);
+                                    /** @phpstan-ignore-next-line */
                                     fclose($stream);
 
                                     Storage::disk('public')->deleteDirectory('filament_exports/' . $id);
@@ -155,18 +164,22 @@ class StudentResource extends Resource
                         ->icon('heroicon-o-cloud-arrow-down')
                         ->color('primary')
                         ->after(function () {
-                            $id = Export::query()->latest()->first()->id;
+                            /** @var Export $export */
+                            $export = Export::query()->latest()->first();
+                            $id = $export->id;
                             $path = "filament_exports/$id/export-$id-students.xlsx";
                             $stdCount = Student::count();
                             $waitBaseTime = 0.05;
                             // wait until the file is created
-                            sleep($stdCount * $waitBaseTime);
+                            sleep((int)ceil($stdCount * $waitBaseTime));
 
                             if (Storage::disk('public')->exists($path)) {
                                 return response()->stream(
                                     function () use ($path, $id) {
                                         $stream = Storage::disk('public')->readStream($path);
+                                        /** @phpstan-ignore-next-line */
                                         fpassthru($stream);
+                                        /** @phpstan-ignore-next-line */
                                         fclose($stream);
 
                                         Storage::disk('public')->deleteDirectory('filament_exports/' . $id);
@@ -196,7 +209,7 @@ class StudentResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            // todo: add some widgets
+            ChatUsageChart::class
         ];
     }
 }
