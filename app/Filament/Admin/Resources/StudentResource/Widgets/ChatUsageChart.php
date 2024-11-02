@@ -8,13 +8,14 @@ use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\HtmlString;
 
 class ChatUsageChart extends ChartWidget
 {
-    protected static ?string $heading = 'مصرف ماهیانه دانش آموزان از چت';
+    protected static ?string $heading = 'مصرف چت ماهیانه دانش آموزان';
     protected static ?string $pollingInterval = null;
     public ?string $filter = null;
-    protected int | string | array $columnSpan = '12';
+    protected int | string | array $columnSpan = '1';
 
     protected function getData(): array
     {
@@ -44,11 +45,6 @@ class ChatUsageChart extends ChartWidget
     protected function getType(): string
     {
         return 'line';
-    }
-
-    public function getDescription(): string|Htmlable|null
-    {
-        return 'این نمودار بیانگر میزان استفاده از چت عمومی و چت های مربوط به هر درس توسط دانش آموزان است';
     }
 
     protected function getFilters(): ?array
