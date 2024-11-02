@@ -33,6 +33,7 @@ class StudentExporter extends Exporter
                 }),
             ExportColumn::make('dob')
                 ->label('تاریخ تولد')
+                /** @phpstan-ignore-next-line */
                 ->formatStateUsing(fn(string $state) => verta($state)->format('Y/m/d')),
             ExportColumn::make('classroom.name')
                 ->label('نام کلاس')
