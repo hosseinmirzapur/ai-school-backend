@@ -17,7 +17,7 @@ class ListStudents extends ListRecords
         ];
     }
 
-    protected function getHeaderWidgets(): array
+    protected function getFooterWidgets(): array
     {
         return [
             StudentResource\Widgets\ChatUsageChart::class,

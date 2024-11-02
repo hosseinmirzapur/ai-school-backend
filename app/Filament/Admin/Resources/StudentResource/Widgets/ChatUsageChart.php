@@ -14,6 +14,7 @@ class ChatUsageChart extends ChartWidget
     protected static ?string $heading = 'مصرف ماهیانه دانش آموزان از چت';
     protected static ?string $pollingInterval = null;
     public ?string $filter = null;
+    protected int | string | array $columnSpan = '12';
 
     protected function getData(): array
     {
@@ -35,7 +36,7 @@ class ChatUsageChart extends ChartWidget
                     'data' => $data->map(fn(TrendValue $value) => intval($value->aggregate))
                 ]
             ],
-            /** @phpstan-ignore-next-line  */
+            /** @phpstan-ignore-next-line */
             'labels' => $data->map(fn(TrendValue $value) => verta($value->date)->format('%B %Y'))
         ];
     }
