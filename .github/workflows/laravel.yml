@@ -40,6 +40,7 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USER }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_PATH: ${{ secrets.SERVER_PATH }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' > private_key
           chmod 600 private_key
@@ -69,6 +70,9 @@ jobs:
             sudo -u deployer php8.2 artisan view:cache
             sudo -u deployer php8.2 artisan storage:link
             sudo -u deployer php8.2 artisan filament:optimize
+
+            // Restart php-fpm to apply changes
+            sudo systemctl restart php8.2-fpm
           EOF
 
           # Clean up the temporary key file
