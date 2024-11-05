@@ -68,7 +68,6 @@ jobs:
             sudo -u deployer php8.2 artisan migrate --force
             sudo -u deployer php8.2 artisan config:cache
             sudo -u deployer php8.2 artisan route:cache
-            sudo -u deployer php8.2 artisan view:cache
             sudo -u deployer php8.2 artisan storage:link
             sudo -u deployer php8.2 artisan filament:optimize
 
