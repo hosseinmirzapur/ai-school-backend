@@ -22,9 +22,6 @@ jobs:
       - name: Install Dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Generate Laravel Key
-        run: php artisan key:generate
-
       - name: Set Directory Permissions
         run: chmod -R 775 storage bootstrap/cache
 
