@@ -59,11 +59,12 @@ jobs:
             # Copy .env to the project directory
             sudo -u deployer cp ../.env ./
 
+            sudo -u deployer php8.2 /usr/local/bin/composer install --no-dev --optimize-autoloader
+
             # Set directory permissions for storage and cache
             sudo -u deployer chmod -R 777 storage bootstrap/cache
 
-            # Install/update dependencies and optimize the app
-            sudo -u deployer php8.2 /usr/local/bin/composer install --no-dev --optimize-autoloader
+            # Optimize the app
             sudo -u deployer php8.2 artisan migrate --force
             sudo -u deployer php8.2 artisan config:cache
             sudo -u deployer php8.2 artisan route:cache
