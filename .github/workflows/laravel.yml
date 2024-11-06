@@ -39,37 +39,36 @@ jobs:
         env:
           SERVER_USER: ${{ secrets.SERVER_USER }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
-          SERVER_PATH: ${{ secrets.SERVER_PATH }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' > private_key
           chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key $SERVER_USER@$SERVER_IP << 'EOF'
-            cd $SERVER_PATH
+            cd /var/www/school/backend
 
             # Pull the latest changes from the main branch
             if [ ! -d ".git" ]; then
-                sudo -u deployer git clone https://github.com/hosseinmirzapur/ai-school-backend.git .
+                git clone https://github.com/hosseinmirzapur/ai-school-backend.git .
               else
-                sudo -u deployer git stash
-                sudo -u deployer git pull origin main
-                sudo -u deployer git stash pop
+                git stash
+                git pull origin main
+                git stash pop
               fi
 
             # Copy .env to the project directory
-            sudo -u deployer cp ../.env ./
+            cp /var/www/school/.env /var/www/school/backend/
 
-            sudo -u deployer php8.2 /usr/local/bin/composer install --no-dev --optimize-autoloader
+            php8.2 /usr/local/bin/composer install --no-dev --optimize-autoloader
 
             # Set directory permissions for storage and cache
-            sudo -u deployer chmod -R 777 storage bootstrap/cache
+            sudo chmod -R 777 storage bootstrap/cache
 
             # Optimize the app
-            sudo -u deployer php8.2 artisan migrate --force
-            sudo -u deployer php8.2 artisan config:cache
-            sudo -u deployer php8.2 artisan route:cache
-            sudo -u deployer php8.2 artisan storage:link
-            sudo -u deployer php8.2 artisan filament:optimize
+            php8.2 artisan migrate --force
+            php8.2 artisan config:cache
+            php8.2 artisan route:cache
+            php8.2 artisan storage:link
+            php8.2 artisan filament:optimize
 
             // Restart php-fpm to apply changes
             sudo systemctl restart php8.2-fpm
