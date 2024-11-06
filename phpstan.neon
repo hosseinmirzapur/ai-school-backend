@@ -6,7 +6,6 @@ parameters:
     paths:
         - app
         - bootstrap
-        - config
         - database
         - lang
         - routes
