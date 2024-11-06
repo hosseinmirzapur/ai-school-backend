@@ -76,7 +76,7 @@ class PageService
             ->with('subject')
             ->orderBy('start_time')
             ->get()
-            ->groupBy('dow');
+            ->groupBy('dow', preserveKeys: true);
 
         /**
          * Add `fullDuration` attribute to each day

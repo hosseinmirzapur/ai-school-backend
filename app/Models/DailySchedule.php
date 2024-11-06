@@ -61,7 +61,7 @@ class DailySchedule extends Model
     {
         $startTime = Carbon::parse($this->start_time);
         $endTime = Carbon::parse($this->end_time);
-        $durationInMinutes = $endTime->diffInMinutes($startTime);
+        $durationInMinutes = $endTime->diffInMinutes($startTime, absolute: true);
 
         return (int)$durationInMinutes;
     }
