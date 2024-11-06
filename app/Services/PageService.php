@@ -3,12 +3,10 @@
 namespace App\Services;
 
 use App\Models\Chat;
-use App\Models\DailySchedule;
 use App\Models\Lesson;
 use App\Models\SiteSettings;
 use App\Models\Student;
 use App\Models\Subject;
-use Illuminate\Support\Collection;
 
 class PageService
 {
@@ -76,17 +74,7 @@ class PageService
             ->with('subject')
             ->orderBy('start_time')
             ->get()
-            ->groupBy('dow', preserveKeys: true);
-
-        /**
-         * Add `fullDuration` attribute to each day
-         * e.g: `sat['fullDuration'] = 155` in minutes
-         *
-         * @var Collection<DailySchedule> $schedules
-         */
-        foreach ($weeklySchedule as $schedules) {
-            $schedules['fullDuration'] = $schedules->sum('duration');
-        }
+            ->groupBy('dow');
 
         return [
             'schedule' => $weeklySchedule,
