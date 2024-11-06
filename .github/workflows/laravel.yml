@@ -70,7 +70,7 @@ jobs:
             php8.2 artisan storage:link
             php8.2 artisan filament:optimize
 
-            // Restart php-fpm to apply changes
+            # Restart php-fpm to apply changes
             sudo systemctl restart php8.2-fpm
           EOF
 
