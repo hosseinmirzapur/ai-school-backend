@@ -19,7 +19,11 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:3000', 'https://school.irapardaz.ir'],
+    'allowed_origins' => [
+        'http://localhost:3000',
+        'https://school.irapardaz.ir',
+        'https://ai-school-two.vercel.app'
+    ],
 
     'allowed_origins_patterns' => [],
 
