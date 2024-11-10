@@ -63,7 +63,7 @@ class PageService
             $resData[] = [
                 'id' => $subject->id,
                 'title' => $subject->name,
-                'imageSrc' => $subject->image ?? Storage::url($subject->image),
+                'imageSrc' => $subject->image ? Storage::url($subject->image) : null,
             ];
         }
 
