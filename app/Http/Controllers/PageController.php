@@ -7,6 +7,7 @@ use App\Models\Lesson;
 use App\Models\Subject;
 use App\Services\PageService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -117,17 +118,23 @@ class PageController extends Controller
     }
 
     /**
+     *
      * @param Subject $subject
+     * @param Request $request
      * @return JsonResponse
      */
-    public function lessons(Subject $subject): JsonResponse
+    public function lessons(Subject $subject, Request $request): JsonResponse
     {
         /* Data needed
          * lessons assigned to the subject
          * subject itself
          */
+        $include = false;
+        if ($request->query('include')) {
+            $include = boolval($request->query('include'));
+        }
 
-        $data = $this->service->lessons($subject);
+        $data = $this->service->lessons($subject, $include);
         return response()->json($data);
     }
 

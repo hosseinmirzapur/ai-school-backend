@@ -204,13 +204,15 @@ class PageService
         ];
     }
 
-    public function lessons(Subject $subject): array
+    public function lessons(Subject $subject, bool $include): array
     {
-        /** @var Collection<int, array> $lessons */
-        $lessons = $subject->lessons()
-            ->with([
+        $query = $subject->lessons();
+        if ($include) {
+            $query->with([
                 'flashcards', 'videos', 'sliders', 'dictations'
-            ])
+            ]);
+        }
+        $lessons = $query
             ->get()
             ->map(function (Lesson $lesson) {
                 return [
