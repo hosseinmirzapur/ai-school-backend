@@ -9,6 +9,7 @@ use App\Models\SiteSettings;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class PageService
 {
@@ -55,10 +56,19 @@ class PageService
      */
     public function sources(): array
     {
-        $subjects = Subject::select(['name', 'slug', 'image'])->get();
+        $subjects = Subject::select(['name', 'slug', 'image'])->with('lessons')->get();
+        $resData = [];
+        /** @var Subject $subject */
+        foreach ($subjects as $subject) {
+            $resData[] = [
+                'id' => $subject->id,
+                'title' => $subject->name,
+                'imageSrc' => $subject->image ?? Storage::url($subject->image),
+            ];
+        }
 
         return [
-            'sources' => $subjects
+            'sources' => $resData
         ];
     }
 
