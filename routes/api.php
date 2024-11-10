@@ -12,7 +12,7 @@ Route::middleware('auth:api-student')->prefix('/pages')->group(function () {
     // `/pages/sources` related routes
     Route::prefix('/sources')->group(function () {
         Route::get('/', [PageController::class, 'sources']);
-        Route::get('/{source}', [PageController::class, 'lessons']);
+        Route::get('/{subject}', [PageController::class, 'lessons']);
     });
     Route::get('/weekly-schedule', [PageController::class, 'weeklySchedule']);
     Route::get('/notifications', [PageController::class, 'notifications']);
