@@ -56,7 +56,7 @@ class PageService
      */
     public function sources(): array
     {
-        $subjects = Subject::select(['name', 'slug', 'image'])->with('lessons')->get();
+        $subjects = Subject::select(['name', 'image', 'id'])->get();
         $resData = [];
         /** @var Subject $subject */
         foreach ($subjects as $subject) {
