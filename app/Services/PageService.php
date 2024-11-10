@@ -103,6 +103,7 @@ class PageService
             'tue' => 'tuesday',
             'wed' => 'wednesday',
             'thu' => 'thursday',
+            default => 'friday'
         };
     }
 
