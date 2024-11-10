@@ -3,10 +3,12 @@
 namespace App\Services;
 
 use App\Models\Chat;
+use App\Models\DailySchedule;
 use App\Models\Lesson;
 use App\Models\SiteSettings;
 use App\Models\Student;
 use App\Models\Subject;
+use Illuminate\Support\Collection;
 
 class PageService
 {
@@ -75,10 +77,33 @@ class PageService
             ->orderBy('start_time')
             ->get()
             ->groupBy('dow');
+        $resData = [];
+        $index = 0;
+        /**
+         * @var string $day
+         * @var Collection<DailySchedule> $schedules
+         */
+        foreach ($weeklySchedule as $day => $schedules) {
+            $resData[$index]['day'] = $this->formatDay($day);
+            $resData[$index]['subjects'] = $schedules;
+            $resData[$index]['fullDuration'] = $schedules->sum('duration');
+            $index++;
+        }
 
         return [
-            'schedule' => $weeklySchedule,
+            'schedule' => $resData,
         ];
+    }
+
+    private function formatDay(string $day): string {
+        return match($day) {
+            'sat' => 'saturday',
+            'sun' => 'sunday',
+            'mon' => 'monday',
+            'tue' => 'tuesday',
+            'wed' => 'wednesday',
+            'thu' => 'thursday',
+        };
     }
 
     /**
