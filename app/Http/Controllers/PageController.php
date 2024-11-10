@@ -130,39 +130,6 @@ class PageController extends Controller
         return response()->json($data);
     }
 
-    /**
-     * @param Lesson $lesson
-     * @return JsonResponse
-     */
-    public function sliders(Lesson $lesson): JsonResponse
-    {
-        /* Data needed
-         * all the sliders for the lesson
-         */
-        $data = $this->service->sliders($lesson);
-        return response()->json($data);
-    }
-
-    /**
-     * @param Lesson $lesson
-     * @return JsonResponse
-     */
-    public function videos(Lesson $lesson): JsonResponse
-    {
-        $data = $this->service->videos($lesson);
-        return response()->json($data);
-    }
-
-    /**
-     * @param Lesson $lesson
-     * @return JsonResponse
-     */
-    public function flashcards(Lesson $lesson): JsonResponse
-    {
-        $data = $this->service->flashcards($lesson);
-        return response()->json($data);
-    }
-
     public function messages(Chat $chat): JsonResponse
     {
         $data = $this->service->messages($chat);

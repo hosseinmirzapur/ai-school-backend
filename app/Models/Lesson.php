@@ -27,6 +27,8 @@ use Illuminate\Support\Carbon;
  * @property-read Subject $subject
  * @property-read Collection<int, Video> $videos
  * @property-read int|null $videos_count
+ * @property-read Collection<int, Dictation> $dictations
+ * @property-read int|null $dictations_count
  * @mixin Eloquent
  */
 class Lesson extends Model

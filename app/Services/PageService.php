@@ -4,11 +4,16 @@ namespace App\Services;
 
 use App\Models\Chat;
 use App\Models\DailySchedule;
+use App\Models\Dictation;
+use App\Models\Flashcard;
 use App\Models\Lesson;
 use App\Models\SiteSettings;
+use App\Models\Slider;
 use App\Models\Student;
 use App\Models\Subject;
+use App\Models\Video;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PageService
@@ -116,8 +121,9 @@ class PageService
         ];
     }
 
-    private function formatDay(string $day): string {
-        return match($day) {
+    private function formatDay(string $day): string
+    {
+        return match ($day) {
             'sat' => 'saturday',
             'sun' => 'sunday',
             'mon' => 'monday',
@@ -200,43 +206,54 @@ class PageService
 
     public function lessons(Subject $subject): array
     {
-        $lessons = $subject->lessons;
+        /** @var Collection<int, array> $lessons */
+        $lessons = $subject->lessons()->with([
+            'flashcards', 'videos', 'sliders', 'dictations'
+        ])
+            ->get()
+            ->map(function (Lesson $lesson) {
+                return [
+                    'id' => $lesson->id,
+                    'name' => $lesson->name,
+                    'flashcards' => $lesson->flashcards->map(function (Flashcard $flashcard) {
+                        return [
+                            'id' => $flashcard->id,
+                            'question' => $flashcard->question,
+                            'answer' => $flashcard->answer,
+                            'image' => $flashcard->image ? Storage::url($flashcard->image) : null,
+                        ];
+                    }),
+                    'sliders' => $lesson->sliders()
+                        ->orderByDesc('order')
+                        ->get()
+                        ->map(function (Slider $slider) {
+                            return [
+                                'id' => $slider->id,
+                                'image' => $slider->image ? Storage::url($slider->image) : null,
+                                'order' => $slider->order,
+                            ];
+                        }),
+                    'videos' => $lesson->videos->map(function (Video $video) {
+                        return [
+                            'id' => $video->id,
+                            'title' => $video->title,
+                            'description' => $video->description,
+                            'thumbnail' => $video->thumbnail ? Storage::url($video->thumbnail) : null,
+                            'file' => $video->file ? Storage::url($video->file) : null,
+                        ];
+                    }),
+                    'dictations' => $lesson->dictations->map(function (Dictation $dictation) {
+                        return [
+                            'id' => $dictation->id,
+                            'title' => $dictation->title,
+                            'text' => $dictation->text,
+                        ];
+                    })
+                ];
+            });
 
         return [
             'lessons' => $lessons
-        ];
-    }
-
-    /**
-     * @param Lesson $lesson
-     * @return array
-     */
-    public function sliders(Lesson $lesson): array
-    {
-        return [
-            'sliders' => $lesson->sliders
-        ];
-    }
-
-    /**
-     * @param Lesson $lesson
-     * @return array
-     */
-    public function videos(Lesson $lesson): array
-    {
-        return [
-            'videos' => $lesson->videos
-        ];
-    }
-
-    /**
-     * @param Lesson $lesson
-     * @return array
-     */
-    public function flashcards(Lesson $lesson): array
-    {
-        return [
-            'flashcards' => $lesson->flashcards
         ];
     }
 
