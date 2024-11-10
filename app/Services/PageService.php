@@ -208,7 +208,7 @@ class PageService
     {
         $query = $subject->lessons();
         if ($include) {
-            $query->with([
+            $query = $query->with([
                 'flashcards', 'videos', 'sliders', 'dictations'
             ]);
         }
