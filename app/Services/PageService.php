@@ -204,10 +204,10 @@ class PageService
         ];
     }
 
-    public function lessons(Subject $subject, bool $include): array
+    public function lessons(Subject $subject, bool $load): array
     {
         $query = Lesson::query()->where('subject_id', $subject->id);
-        if ($include) {
+        if ($load) {
             $query = $query->with([
                 'flashcards', 'videos', 'sliders', 'dictations'
             ]);

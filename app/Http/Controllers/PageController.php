@@ -129,12 +129,12 @@ class PageController extends Controller
          * lessons assigned to the subject
          * subject itself
          */
-        $include = false;
-        if ($request->query('include')) {
-            $include = boolval($request->query('include'));
+        $load = false;
+        if ($request->query('load')) {
+            $load = boolval($request->query('load'));
         }
 
-        $data = $this->service->lessons($subject, $include);
+        $data = $this->service->lessons($subject, $load);
         return response()->json($data);
     }
 
