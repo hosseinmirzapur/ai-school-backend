@@ -255,7 +255,10 @@ class PageService
 
         return [
             'lessons' => $lessons,
-            'subject' => $subject
+            'subject' => [
+                'title' => $subject->name,
+                'id' => $subject->id
+            ]
         ];
     }
 

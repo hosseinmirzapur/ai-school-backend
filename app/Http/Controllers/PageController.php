@@ -124,6 +124,7 @@ class PageController extends Controller
     {
         /* Data needed
          * lessons assigned to the subject
+         * subject itself
          */
 
         $data = $this->service->lessons($subject);
