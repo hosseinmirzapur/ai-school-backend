@@ -70,13 +70,19 @@ class PageService
         /** @var Student $student */
         $student = auth()->user();
 
+        $order = [
+            'sat', 'sun', 'mon', 'tue', 'wed', 'thu'
+        ];
         $weeklySchedule = $student
             ->classroom
             ->dailySchedules()
             ->with('subject')
             ->orderBy('start_time')
             ->get()
-            ->groupBy('dow');
+            ->groupBy('dow')
+            ->sortby(function ($schedules, $dow) use ($order) {
+                return array_search($dow, $order);
+            });
         $resData = [];
         $index = 0;
         /**
@@ -86,7 +92,10 @@ class PageService
         foreach ($weeklySchedule as $day => $schedules) {
             $resData[$index]['day'] = $this->formatDay($day);
             $resData[$index]['subjects'] = $schedules->map(function (DailySchedule $schedule) {
-                return $schedule->subject;
+                return [
+                    'title' => $schedule->subject->name,
+                    'duration' => $schedule->duration,
+                ];
             });
             $resData[$index]['fullDuration'] = $schedules->sum('duration');
             $index++;
