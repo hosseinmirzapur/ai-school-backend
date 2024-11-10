@@ -85,7 +85,9 @@ class PageService
          */
         foreach ($weeklySchedule as $day => $schedules) {
             $resData[$index]['day'] = $this->formatDay($day);
-            $resData[$index]['subjects'] = $schedules;
+            $resData[$index]['subjects'] = $schedules->map(function (DailySchedule $schedule) {
+                return $schedule->subject;
+            });
             $resData[$index]['fullDuration'] = $schedules->sum('duration');
             $index++;
         }
