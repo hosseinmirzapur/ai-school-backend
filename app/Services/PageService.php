@@ -207,9 +207,10 @@ class PageService
     public function lessons(Subject $subject): array
     {
         /** @var Collection<int, array> $lessons */
-        $lessons = $subject->lessons()->with([
-            'flashcards', 'videos', 'sliders', 'dictations'
-        ])
+        $lessons = $subject->lessons()
+            ->with([
+                'flashcards', 'videos', 'sliders', 'dictations'
+            ])
             ->get()
             ->map(function (Lesson $lesson) {
                 return [
@@ -253,7 +254,8 @@ class PageService
             });
 
         return [
-            'lessons' => $lessons
+            'lessons' => $lessons,
+            'subject' => $subject
         ];
     }
 
