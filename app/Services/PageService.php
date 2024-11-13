@@ -213,9 +213,11 @@ class PageService
                 'flashcards', 'videos', 'sliders', 'dictations'
             ]);
         }
+        /** @var Student $student */
+        $student = request()->user();
         $lessons = $query
             ->get()
-            ->map(function (Lesson $lesson) {
+            ->map(function (Lesson $lesson) use ($student) {
                 return [
                     'id' => $lesson->id,
                     'name' => $lesson->name,
@@ -243,14 +245,17 @@ class PageService
                             'title' => $video->title,
                             'description' => $video->description,
                             'thumbnail' => $video->thumbnail,
-                            'file' => $video->file
+                            'file' => $video->file,
                         ];
                     }),
-                    'dictations' => $lesson->dictations->map(function (Dictation $dictation) {
+                    'dictations' => $lesson->dictations->map(function (Dictation $dictation) use ($student) {
                         return [
                             'id' => $dictation->id,
                             'title' => $dictation->title,
                             'text' => $dictation->text,
+                            'voice' => $dictation->voice,
+                            'created_at' => $dictation->created_at,
+                            'status' => $student->dictationStatus($dictation)
                         ];
                     })
                 ];

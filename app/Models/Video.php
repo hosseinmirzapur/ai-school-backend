@@ -71,4 +71,14 @@ class Video extends Model
 
         return Storage::url($value);
     }
+
+    /**
+     * @param string $value
+     * @return string
+     */
+    public function getCreatedAtAttribute(string $value): string
+    {
+        /** @phpstan-ignore-next-line  */
+        return verta($value)->format('Y-m-d H:i');
+    }
 }

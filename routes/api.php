@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DictationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,9 @@ Route::prefix('/auth')->group(function () {
     Route::post('/logout', [StudentController::class, 'logout'])->middleware('auth:api-student');
 });
 
+// Dictation Submission
+Route::middleware('auth:api-student')
+    ->post('/dictation/{dictation}/submit', [DictationController::class, 'submit']);
 // Chat
 Route::middleware('auth:api-student')->prefix('/chat')->group(function () {
     Route::post('/{type}', [ChatController::class, 'newChat'])->where([
