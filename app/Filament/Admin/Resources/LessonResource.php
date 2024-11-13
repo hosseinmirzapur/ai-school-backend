@@ -10,7 +10,6 @@ use App\Filament\Admin\Resources\LessonResource\RelationManagers\VideosRelationM
 use App\Models\Lesson;
 use App\Models\Subject;
 use Exception;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -112,7 +111,7 @@ class LessonResource extends Resource
             SlidersRelationManager::class,
             VideosRelationManager::class,
             FlashcardsRelationManager::class,
-            DictationsRelationManager::class
+            DictationsRelationManager::class,
         ];
     }
 

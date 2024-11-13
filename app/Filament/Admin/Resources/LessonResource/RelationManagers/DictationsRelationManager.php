@@ -33,6 +33,10 @@ class DictationsRelationManager extends RelationManager
                         'attachFiles'
                     ])
                     ->required(),
+                Forms\Components\FileUpload::make('voice')
+                    ->label('فایل صوتی')
+                    ->helperText('فایل صوتی املای درس که دانش آموزان با شنیدن آن باید متن آن را ارسال کنند')
+                    ->acceptedFileTypes(['audio/*'])
             ])->columns(1);
     }
 
@@ -50,7 +54,10 @@ class DictationsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('text')
                     ->label('متن دیکته')
                     ->words(6)
-                    ->html()
+                    ->html(),
+                Tables\Columns\ViewColumn::make('voice')
+                    ->label('فایل صوتی')
+                    ->view('filament.tables.columns.audio-column')
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
