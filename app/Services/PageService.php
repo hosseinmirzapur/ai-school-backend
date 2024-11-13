@@ -15,6 +15,7 @@ use App\Models\Video;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Str;
 
 class PageService
 {
@@ -242,7 +243,12 @@ class PageService
                             'title' => $video->title,
                             'description' => $video->description,
                             'thumbnail' => $video->thumbnail ? Storage::url($video->thumbnail) : null,
-                            'file' => $video->file ? Storage::url($video->file) : null,
+                            'file' => $video->file ?
+                                (
+                                Str::contains($video->file, 'http') ?
+                                    $video->file :
+                                    Storage::url($video->file)
+                                ) : null,
                         ];
                     }),
                     'dictations' => $lesson->dictations->map(function (Dictation $dictation) {
