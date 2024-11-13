@@ -48,7 +48,7 @@ jobs:
 
             # Pull the latest changes from the main branch
             if [ ! -d ".git" ]; then
-                git clone https://github.com/hosseinmirzapur/ai-school-backend.git .
+                git clone https://github.com/hosseinmirzapur/ai-school-backend.git . || exit 1
               else
                 git stash
                 git pull origin main
@@ -67,7 +67,6 @@ jobs:
             php8.2 artisan migrate --force
             php8.2 artisan config:cache
             php8.2 artisan route:cache
-            php8.2 artisan storage:link
             php8.2 artisan filament:optimize
 
             # Restart php-fpm to apply changes
