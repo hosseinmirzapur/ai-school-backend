@@ -54,4 +54,21 @@ class Video extends Model
 
         return Storage::url($value);
     }
+
+    /**
+     * @param string|null $value
+     * @return string|null
+     */
+    public function getThumbnailAttribute(?string $value): ?string
+    {
+        if (is_null($value)) {
+            return null;
+        }
+
+        if (str_contains($value, 'http')) {
+            return $value;
+        }
+
+        return Storage::url($value);
+    }
 }

@@ -242,13 +242,8 @@ class PageService
                             'id' => $video->id,
                             'title' => $video->title,
                             'description' => $video->description,
-                            'thumbnail' => $video->thumbnail ? Storage::url($video->thumbnail) : null,
-                            'file' => $video->file ?
-                                (
-                                Str::contains($video->file, 'http') ?
-                                    $video->file :
-                                    Storage::url($video->file)
-                                ) : null,
+                            'thumbnail' => $video->thumbnail,
+                            'file' => $video->file
                         ];
                     }),
                     'dictations' => $lesson->dictations->map(function (Dictation $dictation) {
