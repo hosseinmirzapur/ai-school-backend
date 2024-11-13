@@ -5,5 +5,5 @@
         Your browser does not support the audio element.
     </audio>
 @else
-    <span>No audio file</span>
+    <span>فایل صوتی یافت نشد</span>
 @endif
