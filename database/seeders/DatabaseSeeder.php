@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DictationSubmission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +27,8 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             ChatSeeder::class,
             MessageSeeder::class,
+            DictationSeeder::class,
+            DictationSubmission::class
         ]);
     }
 }

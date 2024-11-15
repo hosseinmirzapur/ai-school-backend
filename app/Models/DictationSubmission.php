@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class DictationSubmission extends Model
 {
+    use HasFactory;
     /**
      * @return BelongsTo
      */
@@ -57,5 +59,15 @@ class DictationSubmission extends Model
         }
 
         return Storage::url($value);
+    }
+
+    /**
+     * @param string $value
+     * @return string
+     */
+    public function getCreatedAtAttribute(string $value): string
+    {
+        /** @phpstan-ignore-next-line */
+        return verta($value)->format('Y/m/d H:i');
     }
 }
