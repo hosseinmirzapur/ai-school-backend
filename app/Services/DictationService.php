@@ -37,6 +37,7 @@ class DictationService
             }
 
             $data['image'] = $filename;
+            $data['text'] = null;
         } else {
             $data['image'] = null;
         }
