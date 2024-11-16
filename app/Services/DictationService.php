@@ -37,6 +37,8 @@ class DictationService
             }
 
             $data['image'] = $filename;
+        } else {
+            $data['image'] = null;
         }
 
         DictationSubmission::create([
