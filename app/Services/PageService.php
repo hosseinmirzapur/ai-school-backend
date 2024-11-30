@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\Chat;
 use App\Models\DailySchedule;
 use App\Models\Flashcard;
+use App\Models\Homework;
+use App\Models\HomeworkSubmission;
 use App\Models\Lesson;
 use App\Models\SiteSettings;
 use App\Models\Slider;
@@ -266,5 +268,57 @@ class PageService
         return [
             'messages' => $messages
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function homework(): array
+    {
+        $homework = Homework::with([
+            'subject', 'lesson', 'teacher', 'submissions'
+        ])
+            ->get()
+            ->map(function (Homework $homework) {
+                return [
+                    'id' => $homework->id,
+                    'title' => $homework->title,
+                    'description' => $homework->description,
+                    'subject' => $homework->subject->name,
+                    'lesson' => $homework->lesson->name,
+                    'teacher' => $homework->teacher->name,
+                    'due_date' => $homework->due_date,
+                    'status' => $homework->decideStatus()
+                ];
+            });
+
+        /** @var Student $student */
+        $student = auth()->user();
+
+        $submissions = $student->homeworkSubmissions()
+            ->get()
+            ->map(function (HomeworkSubmission $submission) {
+                return [
+                    'id' => $submission->id,
+                    'subject' => $submission->homework->subject->name,
+                    'lesson' => $submission->homework->lesson->name,
+                    'homework_title' => $submission->homework->title,
+                    'submitted_at' => $submission->submitted_at,
+                    'grade' => $submission->grade,
+                    'graded_at' => $submission->graded_at,
+                    'feedback' => $submission->feedback,
+                    'file' => $submission->submission_file ? Storage::url($submission->submission_file) : null,
+                ];
+            });
+
+        return [
+            'homework' => $homework,
+            'submissions' => $submissions
+        ];
+    }
+
+    public function quiz()
+    {
+        // todo: implement this
     }
 }

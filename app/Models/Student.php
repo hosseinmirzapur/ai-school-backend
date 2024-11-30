@@ -75,6 +75,22 @@ class Student extends Authenticatable
     }
 
     /**
+     * @return HasMany
+     */
+    public function homeworkSubmissions(): HasMany
+    {
+        return $this->hasMany(HomeworkSubmission::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function quizSubmissions(): HasMany
+    {
+        return $this->hasMany(QuizSubmission::class);
+    }
+
+    /**
      * @param array<int, int> $years
      * @return Collection
      */

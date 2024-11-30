@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\DictationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +23,12 @@ Route::middleware('auth:api-student')->prefix('/pages')->group(function () {
         Route::get('/history', [PageController::class, 'chat']);
         Route::get('/{identifier}', [PageController::class, 'messages']);
     });
+
+    // `/pages/homework` related routes
+    Route::get('/homework', [PageController::class, 'homework']);
+
+    // `/pages/quiz` related routes
+    Route::get('/quiz', [PageController::class, 'quiz']);
 });
 
 // Pages (no auth needed)
@@ -36,6 +41,16 @@ Route::prefix('/pages')->group(function () {
 Route::prefix('/auth')->group(function () {
     Route::post('/login', [StudentController::class, 'login']);
     Route::post('/logout', [StudentController::class, 'logout'])->middleware('auth:api-student');
+});
+
+// Homework
+Route::prefix('/homework')->group(function () {
+
+});
+
+// Quiz
+Route::prefix('/quiz')->group(function () {
+
 });
 
 // Chat

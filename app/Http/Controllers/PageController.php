@@ -142,4 +142,22 @@ class PageController extends Controller
         $data = $this->service->messages($chat);
         return response()->json($data);
     }
+
+    /**
+     * @return JsonResponse
+     */
+    public function homework(): JsonResponse
+    {
+        $data = $this->service->homework();
+        return response()->json($data);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function quiz(): JsonResponse
+    {
+        $data = $this->service->quiz();
+        return response()->json($data);
+    }
 }
