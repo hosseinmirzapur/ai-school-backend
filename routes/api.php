@@ -38,9 +38,6 @@ Route::prefix('/auth')->group(function () {
     Route::post('/logout', [StudentController::class, 'logout'])->middleware('auth:api-student');
 });
 
-// Dictation Submission
-Route::middleware('auth:api-student')
-    ->post('/dictation/{dictation}/submit', [DictationController::class, 'submit']);
 // Chat
 Route::middleware('auth:api-student')->prefix('/chat')->group(function () {
     Route::post('/{type}', [ChatController::class, 'newChat'])->where([

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,8 +26,6 @@ use Illuminate\Support\Carbon;
  * @property-read Subject $subject
  * @property-read Collection<int, Video> $videos
  * @property-read int|null $videos_count
- * @property-read Collection<int, Dictation> $dictations
- * @property-read int|null $dictations_count
  * @mixin Eloquent
  */
 class Lesson extends Model
@@ -65,13 +62,5 @@ class Lesson extends Model
     public function sliders(): HasMany
     {
         return $this->hasMany(Slider::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function dictations(): HasMany
-    {
-        return $this->hasMany(Dictation::class);
     }
 }

@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Chat;
 use App\Models\DailySchedule;
-use App\Models\Dictation;
 use App\Models\Flashcard;
 use App\Models\Lesson;
 use App\Models\SiteSettings;
@@ -13,9 +12,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Video;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-use Str;
 
 class PageService
 {
@@ -210,14 +207,12 @@ class PageService
         $query = Lesson::query()->where('subject_id', $subject->id);
         if ($load) {
             $query = $query->with([
-                'flashcards', 'videos', 'sliders', 'dictations'
+                'flashcards', 'videos', 'sliders'
             ]);
         }
-        /** @var Student $student */
-        $student = request()->user();
         $lessons = $query
             ->get()
-            ->map(function (Lesson $lesson) use ($student) {
+            ->map(function (Lesson $lesson) {
                 return [
                     'id' => $lesson->id,
                     'name' => $lesson->name,
@@ -248,16 +243,6 @@ class PageService
                             'file' => $video->file,
                         ];
                     }),
-                    'dictations' => $lesson->dictations->map(function (Dictation $dictation) use ($student) {
-                        return [
-                            'id' => $dictation->id,
-                            'title' => $dictation->title,
-                            'text' => $dictation->text,
-                            'voice' => $dictation->voice,
-                            'created_at' => $dictation->created_at,
-                            'status' => $student->dictationStatus($dictation)
-                        ];
-                    })
                 ];
             });
 

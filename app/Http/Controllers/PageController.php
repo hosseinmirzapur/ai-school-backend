@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
-use App\Models\Lesson;
 use App\Models\Subject;
 use App\Services\PageService;
 use Illuminate\Http\JsonResponse;

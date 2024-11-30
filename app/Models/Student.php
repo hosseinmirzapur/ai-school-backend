@@ -37,8 +37,6 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property-read Classroom $classroom
  * @property-read Collection<int, Message> $messages
  * @property-read int|null $messages_count
- * @property-read Collection<int, DictationSubmission> $submissions
- * @property-read int|null $submissions_count
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read Collection<int, PersonalAccessToken> $tokens
@@ -74,14 +72,6 @@ class Student extends Authenticatable
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function submissions(): HasMany
-    {
-        return $this->hasMany(DictationSubmission::class, 'student_id');
     }
 
     /**
@@ -143,29 +133,6 @@ class Student extends Authenticatable
             'type' => 'casual',
             'identifier' => Str::uuid()
         ]);
-    }
-
-    /**
-     * Three types of status is returned:
-     * 1. scored
-     * 2. not_scored
-     * 3. undone
-     * @param Dictation $dictation
-     * @return string
-     */
-    public function dictationStatus(Dictation $dictation): string
-    {
-        $submission = DictationSubmission::query()
-            ->where('student_id', $this->id)
-            ->where('dictation_id', $dictation->id)
-            ->latest()
-            ->first();
-
-        return match (true) {
-            is_null($submission) => 'undone',
-            is_null($submission->score) => 'not_scored',
-            default => 'scored',
-        };
     }
 
 }

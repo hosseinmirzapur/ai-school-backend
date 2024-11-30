@@ -3,7 +3,6 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\LessonResource\Pages;
-use App\Filament\Admin\Resources\LessonResource\RelationManagers\DictationsRelationManager;
 use App\Filament\Admin\Resources\LessonResource\RelationManagers\FlashcardsRelationManager;
 use App\Filament\Admin\Resources\LessonResource\RelationManagers\SlidersRelationManager;
 use App\Filament\Admin\Resources\LessonResource\RelationManagers\VideosRelationManager;
@@ -111,7 +110,6 @@ class LessonResource extends Resource
             SlidersRelationManager::class,
             VideosRelationManager::class,
             FlashcardsRelationManager::class,
-            DictationsRelationManager::class,
         ];
     }
 
