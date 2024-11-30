@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\HomeworkSubmissionController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -44,8 +45,9 @@ Route::prefix('/auth')->group(function () {
 });
 
 // Homework
-Route::prefix('/homework')->group(function () {
-
+Route::middleware('auth:api-student')->prefix('/homework')->group(function () {
+    Route::post('/{homework}/submit', [HomeworkSubmissionController::class, 'store']);
+    Route::delete('/{submission}/delete', [HomeworkSubmissionController::class, 'destroy']);
 });
 
 // Quiz
