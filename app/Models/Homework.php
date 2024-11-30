@@ -107,7 +107,6 @@ class Homework extends Model
         /** @var Student $student */
         $student = request()->user();
 
-        /** @var HomeworkSubmission $submission */
         $submission = $this->submissions()
             ->where('student_id', $student->id)
             ->latest()
@@ -115,7 +114,7 @@ class Homework extends Model
 
         $status = self::STATUS_NOT_SENT;
 
-        if ($submission) {
+        if (!is_null($submission)) {
             $status = self::STATUS_GRADING;
             if (!is_null($submission->grade)) {
                 $status = self::STATUS_GRADED;

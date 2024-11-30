@@ -33,8 +33,8 @@ class HomeworkSubmissionService
         }
 
         // save the submission_file
-        /** @var UploadedFile $file */
         $path = '/homework';
+        /** @var UploadedFile $file */
         $file = $data['submission_file'];
         $filename = Str::random(10) . now() . '.' . $file->getClientOriginalExtension();
         Storage::disk('public')->putFileAs($path, $file, $filename);

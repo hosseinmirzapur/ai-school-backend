@@ -317,8 +317,11 @@ class PageService
         ];
     }
 
-    public function quiz()
+    /**
+     * @return array
+     */
+    public function quiz(): array
     {
-        // todo: implement this
+        return [];
     }
 }

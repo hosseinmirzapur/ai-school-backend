@@ -62,15 +62,13 @@ class HomeworkSubmission extends Model
     {
         return is_null($value) ?
             $value :
-            /** @phpstan-ignore-nextline */
-            verta($value)->format('Y/m/d H:i');
+            verta($value)->format('Y/m/d H:i'); /** @phpstan-ignore-line */
     }
 
     public function getGradedAtAttribute(?string $value): ?string
     {
         return is_null($value) ?
             $value :
-            /** @phpstan-ignore-nextline */
-            verta($value)->format('Y/m/d H:i');
+            verta($value)->format('Y/m/d H:i'); /** @phpstan-ignore-line */
     }
 }
