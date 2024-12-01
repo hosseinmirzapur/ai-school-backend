@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Quiz;
 use Illuminate\Database\Seeder;
 
 class QuizSeeder extends Seeder
@@ -12,6 +12,6 @@ class QuizSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Quiz::factory(10)->create();
     }
 }

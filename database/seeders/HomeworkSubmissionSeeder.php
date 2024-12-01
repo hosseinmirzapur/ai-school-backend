@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\HomeworkSubmission;
 use Illuminate\Database\Seeder;
 
 class HomeworkSubmissionSeeder extends Seeder
@@ -12,6 +12,6 @@ class HomeworkSubmissionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        HomeworkSubmission::factory(10)->create();
     }
 }

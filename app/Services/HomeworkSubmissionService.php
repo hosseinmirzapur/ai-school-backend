@@ -43,6 +43,7 @@ class HomeworkSubmissionService
         $student->homeworkSubmissions()->create([
             'homework_id' => $homework->id,
             'submission_file' => "$path/$filename",
+            'submitted_at' => now(),
         ]);
     }
 }

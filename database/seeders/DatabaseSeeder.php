@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\HomeworkSubmission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +27,11 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             ChatSeeder::class,
             MessageSeeder::class,
+            QuizSeeder::class,
+            QuizQuestionSeeder::class,
+            QuizSubmissionSeeder::class,
+            HomeworkSeeder::class,
+            HomeworkSubmission::class
         ]);
     }
 }

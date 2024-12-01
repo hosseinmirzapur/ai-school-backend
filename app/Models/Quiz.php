@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Database\Factories\QuizFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
  * 
@@ -18,27 +21,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $lesson_id
  * @property int $teacher_id
  * @property int $total_marks
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Lesson $lesson
- * @property-read \App\Models\Subject $subject
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\QuizSubmission> $submissions
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Lesson $lesson
+ * @property-read Subject $subject
+ * @property-read Collection<int, QuizSubmission> $submissions
  * @property-read int|null $submissions_count
- * @property-read \App\Models\Teacher $teacher
- * @method static \Database\Factories\QuizFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz whereLessonId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz whereSubjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz whereTeacherId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz whereTotalMarks($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Quiz whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property-read Teacher $teacher
+ * @method static QuizFactory factory($count = null, $state = [])
+ * @mixin Eloquent
  */
 class Quiz extends Model
 {
@@ -76,6 +67,14 @@ class Quiz extends Model
     public function teacher(): BelongsTo
     {
         return $this->belongsTo(Teacher::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function questions(): HasMany
+    {
+        return $this->hasMany(QuizQuestion::class);
     }
 
     /**
